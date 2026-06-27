@@ -27,6 +27,17 @@ introduced through specs rather than assumed globally.
 Specs define truth. Skills define process. Agents execute roles. Model choices
 are capacity decisions.
 
+If a selected skill instructs the main agent to use a named project agent role,
+that skill instruction authorizes using that role as a scoped subagent for the
+task. This overrides generic reluctance to spawn subagents, but not system/tool
+constraints, sandbox limits, or file ownership rules.
+
+Each workflow skill should leave a detailed handoff artifact for the next skill
+instead of relying on conversational memory. A handoff should name the producer
+skill, intended consumer skill, artifact path or packet contents, settled
+decisions, unresolved blockers, and the docs/specs/milestones the next skill
+must read.
+
 For non-trivial work:
 
 1. Gather requirements.
@@ -40,6 +51,10 @@ For non-trivial work:
 
 Small documentation or cleanup tasks may skip a formal spec when the user makes
 that explicit or when the change is obviously local and reversible.
+
+Use skill names literally in status and handoff language. If spec-like drafting
+was done manually while `$hermes-requirements` was active, describe it as manual
+spec-like work, not as a literal invocation of `$hermes-spec`.
 
 ## Project Structure
 
@@ -59,9 +74,12 @@ Use these repo skills as the main developer workflows:
   direction, and deciding whether a spec is needed. It produces a pre-spec
   requirements packet: resolved workflow, proposed spec name/path, scope
   boundary, scenarios, acceptance criteria candidates, and blocking questions.
-  It should not write full specs.
+  It should not write full specs or milestone contracts; it should hand them to
+  `$hermes-spec`.
 - `$hermes-spec` for turning a requirements packet into formal specs,
-  milestone contracts, acceptance criteria, and spec status.
+  milestone contracts, acceptance criteria, and spec status. It consumes
+  `$hermes-requirements` handoffs and leaves accepted spec handoffs for
+  `$hermes-dev-loop`.
 - `$hermes-dev-loop` for implementation from an accepted spec through
   verification and review.
 - `$hermes-context` for keeping `AGENTS.md`, product docs, context docs, specs,
@@ -91,6 +109,17 @@ Project-scoped Codex agents live under `.codex/agents/`.
 
 Default rule: only `implementer`, `test-runner`, and `doc-curator` should edit
 files, and only when the main workflow calls for it.
+
+The main agent owns judgment, reconciliation across subagent outputs, user
+interaction, and final reporting. Skills are the workflow layer;
+`.codex/agents/*.toml` are the concrete subagent presets that those workflows
+invoke.
+
+Read-only subagents may run in parallel when their questions are independent.
+Write-capable subagents must have disjoint file ownership. Use one
+`implementer` at a time unless an Accepted spec explicitly decomposes disjoint
+write scopes. `doc-curator` may edit docs and skill or agent rules when
+`$hermes-context` calls for surgical updates.
 
 ## Commands
 

@@ -31,7 +31,11 @@ The long-term goal is to become a personal AI operating system capable of contin
 
 ---
 
-# Architecture
+# Long-Term Architecture Sketch
+
+The first finance milestone handoff starts with fixture-backed report
+generation. Telegram, scheduling, live provider integrations, and runtime
+finance sub-agents are deferred to later specs.
 
 ```
                         Telegram
@@ -71,18 +75,19 @@ Sentiment    Support/Res   Margin Safety    Risks      │
 
 ## Phase 1
 
-Finance Agent
+Finance Agent Foundation
 
-- Responsible for producing entry-price analysis and market updates
-- Telegram interface
-- Hermes orchestration
-- OpenRouter integration
-- It can delegate internally to specialised finance sub-agents:
-    - News Agent
-    - Price Agent
-    - Valuation Agent
-    - Risk Agent
-    - Chief Analyst
+- proposed `0001`: fixture-backed daily-style market brief for a
+  caller-supplied US equity watchlist, including general market context and a
+  constrained research-only pullback-zone section
+- proposed `0002`: richer entry-zone strategy layer for technical analysis,
+  scoring, ranking, and strategy logic
+- Deferred to later specs:
+    - Telegram delivery
+    - automated scheduling
+    - persistent watchlists
+    - live provider integrations
+    - runtime finance sub-agent architecture
 
 
 ---
@@ -152,7 +157,7 @@ Instead, it explains, synthesises and reasons over trusted information produced 
 
 ---
 
-# Example Workflow
+# Future Example Workflow
 
 ```
 User
@@ -200,13 +205,10 @@ NVIDIA (NVDA)
 Current Price
 $171.82
 
-Suggested Buy Zones
+Research-Only Pullback Zone
 
-Starter
+Candidate zone from supplied fixture data
 $165–168
-
-Strong Conviction
-$155–160
 
 Investment Thesis
 
@@ -221,9 +223,10 @@ Risks
 • High valuation
 • Increased competition
 
-Action
+Limitations
 
-Wait for pullback towards the first buy zone.
+This is a research-only pullback zone, not personalized financial advice or a
+trade instruction.
 ```
 
 ---
