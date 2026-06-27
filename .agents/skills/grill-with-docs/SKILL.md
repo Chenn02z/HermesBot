@@ -22,8 +22,10 @@ against the repo's documented boundaries.
 2. `README.md`
 3. `docs/PRODUCT.md`
 4. `docs/CONTEXT.md`
-5. Relevant files under `docs/specs/` or `docs/milestones/`
-6. Touched code or skill files, if any
+5. Relevant reference docs such as `docs/WORKFLOWS.md`,
+   `docs/AGENT_ROLES.md`, or `docs/DOCS_POLICY.md`
+6. Relevant files under `docs/specs/` or `docs/milestones/`
+7. Touched code or skill files, if any
 
 ## Workflow
 
@@ -40,6 +42,9 @@ against the repo's documented boundaries.
 
 - `docs/CONTEXT.md` for canonical terminology and workflow boundaries.
 - `docs/PRODUCT.md` for product intent, scope, and roadmap.
+- `docs/WORKFLOWS.md` for skill workflow rules and handoff expectations.
+- `docs/AGENT_ROLES.md` for subagent roles, edit permissions, and routing.
+- `docs/DOCS_POLICY.md` for documentation destinations and status rules.
 - `docs/specs/` for executable contracts.
 - `docs/milestones/` for larger deliverable slices.
 - `docs/adr/NNNN-slug.md` for durable architecture decisions.

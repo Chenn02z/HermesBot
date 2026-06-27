@@ -49,6 +49,15 @@ and workflow context, not implementation details.
 - `context maintenance`: keeping docs, specs, skills, and agent presets aligned
   after decisions settle.
 
+## Reference Documents
+
+- `AGENTS.md`: fast Codex orientation and minimum operating contract.
+- `docs/PRODUCT.md`: product intent, current scope, principles, and roadmap.
+- `docs/WORKFLOWS.md`: detailed skill workflow rules and handoff expectations.
+- `docs/AGENT_ROLES.md`: subagent roles, edit permissions, and routing
+  principles.
+- `docs/DOCS_POLICY.md`: documentation destinations and status rules.
+
 ## Agent Roles
 
 - `spec-planner`: drafts requirements, specs, milestones, and acceptance

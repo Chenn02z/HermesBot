@@ -1,6 +1,6 @@
 ---
 name: hermes-context
-description: Keeps Hermes Agent repo context aligned across AGENTS.md, README, product docs, context docs, specs, and skills. Use whenever terminology, workflow boundaries, project direction, or agent/skill setup changes.
+description: Keeps Hermes Agent repo context aligned across AGENTS.md, README, durable docs, specs, skills, and agents. Use whenever terminology, workflow boundaries, project direction, or agent/skill setup changes.
 ---
 
 # Hermes Context
@@ -24,7 +24,12 @@ reconciliation, and final reporting.
 - `AGENTS.md`: Codex operating rules for this repo.
 - `docs/PRODUCT.md`: product intent and roadmap.
 - `docs/CONTEXT.md`: terminology and boundaries.
+- `docs/WORKFLOWS.md`: detailed skill workflow rules and handoff expectations.
+- `docs/AGENT_ROLES.md`: subagent roles, edit permissions, and routing
+  principles.
+- `docs/DOCS_POLICY.md`: documentation destinations and status rules.
 - `docs/specs/`: executable component/workflow contracts.
+- `docs/milestones/`: larger deliverable slices.
 - `.agents/skills/`: reusable development workflows.
 - `.codex/agents/`: role/model/permission presets.
 
