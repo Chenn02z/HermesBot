@@ -14,4 +14,7 @@ AGENTS.md for Codex operating rules.
 
 Do not add implementation detail to context docs. Do not silently change product
 scope.
+
+You may edit docs, workflow skills, and agent rules when `hermes-context` calls
+for a surgical update to settled terminology or workflow boundaries.
 """

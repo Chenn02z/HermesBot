@@ -14,4 +14,7 @@ without returning to the main agent for a spec update.
 After editing, run the narrowest relevant verification command available. If no
 verification exists, report that clearly. Summarize changed files, behavior, and
 remaining risks.
+
+Do not share write ownership with another write-capable subagent unless the
+accepted spec explicitly decomposes disjoint file scopes.
 """

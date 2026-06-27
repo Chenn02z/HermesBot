@@ -6,9 +6,14 @@ description: Converts settled Hermes Agent requirements packets into formal spec
 # Hermes Spec
 
 Use this skill when the work needs an executable spec or milestone contract. It
-consumes output from `$hermes-requirements` when the request began ambiguous:
-resolved workflow, proposed spec name/path, scope boundary, scenarios,
-acceptance criteria candidates, and blocking questions.
+consumes handoff artifacts from `$hermes-requirements` when the request began
+ambiguous: resolved workflow, producer/consumer, proposed spec or milestone
+path, scope boundary, scenarios, acceptance criteria candidates, settled user
+decisions, blocking questions, and docs to read next.
+
+The named project agents in this workflow are authorized subagents for this
+skill's scoped task. The main agent still owns judgment, user interaction,
+reconciliation, and final reporting.
 
 ## Read First
 
@@ -51,12 +56,15 @@ Draft
 2. If the request is still vague, return to `$hermes-requirements` before
    writing the formal spec.
 3. Use `spec-planner` to draft or revise the spec from the requirements packet.
-4. Use `spec-griller` before marking a spec Accepted.
+4. Use `spec-griller` before marking a spec Accepted. Independent read-only
+   passes may run in parallel.
 5. Use `$grill-with-docs` when the spec changes terminology, workflow
    boundaries, milestone direction, or other repo context.
 6. Keep specs implementation-ready but not implementation-heavy.
 7. If code reveals the spec is wrong, update the spec before continuing.
 8. If the spec settles a context change, hand off to `$hermes-context`.
+9. When the spec or milestone is ready for implementation, leave an explicit
+   handoff artifact for `$hermes-dev-loop`.
 
 ## Status Rules
 
@@ -67,5 +75,17 @@ Draft
 
 ## Output
 
-Return the spec path, status, key acceptance criteria, and remaining open
-questions. Do not hide new scope inside implementation notes.
+Return a handoff artifact:
+
+- producer skill and intended consumer skill
+- spec or milestone path
+- status
+- key contracts and acceptance criteria
+- settled decisions carried forward from requirements
+- remaining open questions or blockers
+- verification expectations
+- docs/specs/milestones that the next skill should read
+
+Do not hide new scope inside implementation notes.
+This skill writes or updates formal contracts under `docs/specs/` and
+`docs/milestones/`.
