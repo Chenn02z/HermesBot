@@ -30,7 +30,8 @@ then from accepted specs to verified implementation.
 
 ## Current Scope
 
-The current scope is the development system itself:
+The current scope is the development system plus the first finance-domain
+specification slice:
 
 - repo operating instructions
 - specs and milestone structure
@@ -38,16 +39,20 @@ The current scope is the development system itself:
 - Codex project agents for planning, grilling, exploration, implementation,
   verification, review, and documentation
 - context docs that prevent terminology drift
+- first finance milestone handoff for a fixture-backed market brief and
+  follow-up entry-zone strategy layer
 
-Application domains such as finance, Telegram, or personal operations are
-future domain specs, not global assumptions.
+Application domains such as Telegram or broader personal operations remain
+future domain specs, not global assumptions. Finance is the first domain
+expansion, currently captured as a requirements handoff for later specs.
 
 ## Non-Goals For Now
 
 - Deployment workflow.
 - Evals infrastructure.
 - Production application architecture.
-- Full finance agent implementation.
+- Full finance agent implementation outside accepted specs.
+- Live brokerage, trade execution, or personalized financial advice.
 - General-purpose agent marketplace.
 - Complex bash-based orchestration.
 
@@ -82,7 +87,11 @@ This workspace is succeeding when:
 2. Workflow foundation: add requirements, spec, dev-loop, and context skills.
 3. Agent foundation: add role/model/permission presets under `.codex/agents/`.
 4. Spec foundation: add spec template and first milestone specs.
-5. Domain expansion: introduce finance, Telegram, or other personal-ops domains
-   through accepted specs.
+5. Domain expansion: introduce finance first through
+   `docs/milestones/0001-finance-agent-foundation.md`, which proposes
+   `docs/specs/0001-finance-daily-market-brief.md` and
+   `docs/specs/0002-finance-entry-zone-strategy.md` for `$hermes-spec`;
+   introduce Telegram or other personal-ops domains through later accepted
+   specs.
 6. Later: add evals and deployment workflows when implementation maturity
    justifies them.
