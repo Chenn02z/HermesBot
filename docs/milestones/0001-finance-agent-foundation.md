@@ -2,23 +2,22 @@
 
 ## Status
 
-Draft
+Verified
 
 ## Goal
 
-Capture the settled requirements for the first finance-domain slice of Hermes:
-a fixture-backed market brief followed by a richer, separately scoped
-entry-zone strategy layer.
+Capture the verified first finance-domain slice of Hermes: a fixture-backed
+market brief followed by a richer, separately scoped entry-zone strategy layer.
 
-This milestone exists to keep the immediate finance work useful without turning
-`0001` into the entire Finance Agent MVP.
+This milestone exists to record the completed fixture-backed finance foundation
+without turning `0001` into the entire Finance Agent MVP.
 
 ## Producer And Consumer
 
 - Producer skill: `$hermes-requirements`
 - Intended consumer skill: `$hermes-spec`
-- Next action: use `$hermes-context` if the verified finance work settles
-  durable terminology or workflow boundaries.
+- Next action: consume the future milestone files under `docs/milestones/`
+  when planning runtime, provider, Telegram, persistence, or deployment work.
 
 ## Developer Workflow
 
@@ -27,7 +26,7 @@ implementation -> fixture-backed verification -> context maintenance.
 
 ## Specs
 
-- `docs/specs/0001-finance-daily-market-brief.md` - Implemented
+- `docs/specs/0001-finance-daily-market-brief.md` - Verified
 - `docs/specs/0002-finance-entry-zone-strategy.md` - Verified
 
 ## Milestone Scope
@@ -162,10 +161,10 @@ Resolved questions from `$hermes-spec`:
 - Valuation and fundamental signals are deferred to later specs.
 - Model-written synthesis is deferred to later specs.
 
-## Milestone Acceptance Candidates
+## Milestone Acceptance Criteria
 
-- `$hermes-spec` writes formal specs for `0001` and `0002` from this handoff.
-- `0001` is reviewed and accepted before implementation starts.
+- `$hermes-spec` wrote formal specs for `0001` and `0002` from this handoff.
+- `0001` is verified after implementation and targeted finance checks.
 - `0002` is verified after implementation and targeted finance checks.
 - Durable docs identify finance as the first domain expansion while preserving
   Telegram, scheduling, live provider integration, and trade execution as later
@@ -175,10 +174,11 @@ Resolved questions from `$hermes-spec`:
 
 ## Verification
 
-- Review `README.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`, and this milestone
-  for consistent scope language.
-- Run fixture-backed tests once implementation exists.
-- Confirm no acceptance criterion requires network access, brokerage access, or
+- `docs/specs/0001-finance-daily-market-brief.md` is Verified.
+- `docs/specs/0002-finance-entry-zone-strategy.md` is Verified.
+- Full `uv run pytest` passed with `60 passed`.
+- Full `uv run ruff check .` passed.
+- No acceptance criterion requires network access, brokerage access, or
   Telegram delivery.
 
 ## Open Questions
@@ -188,24 +188,23 @@ Resolved questions from `$hermes-spec`:
 
 ## Handoff
 
-- Producer skills: `$hermes-requirements`, then `$hermes-spec`
-- Intended consumer skill: `$hermes-dev-loop` for accepted `0001`;
-  `$hermes-context` for verified `0002` context maintenance when needed
+- Producer skills: `$hermes-requirements`, `$hermes-spec`, then
+  `$hermes-dev-loop`
+- Intended consumer skill: `$hermes-spec` for future milestone contracts;
+  `$hermes-context` when durable context needs alignment
 - Artifact path: `docs/milestones/0001-finance-agent-foundation.md`.
-- Status: Draft.
-- Settled decisions: `0001` is Implemented and remains the fixture-backed
-  finance brief slice; `0002` is Verified as the fixture-backed long-term
-  entry-zone strategy slice.
-- Unresolved blockers: none for verified `0002`; live data providers remain a
+- Status: Verified.
+- Settled decisions: `0001` and `0002` are the verified fixture-backed finance
+  foundation; live data providers, Telegram, persistence, runtime
+  orchestration, and deployment remain later milestone/spec work.
+- Unresolved blockers: none for this milestone; live data providers remain a
   later-spec question.
 - Required next reads: `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`,
   `docs/specs/0001-finance-daily-market-brief.md`,
   `docs/specs/0002-finance-entry-zone-strategy.md`, and this milestone handoff.
-- Formal specs now live under `docs/specs/`; `0001` is Implemented and `0002`
-  is Verified.
-- `$hermes-context` should consume the implemented `0001` handoff when durable
-  docs or workflow contracts need alignment; `$hermes-context` should consume
-  verified `0002` if durable docs or workflow contracts need alignment.
+- Formal specs now live under `docs/specs/`; `0001` and `0002` are Verified.
+- Future work should consume the individual milestone files under
+  `docs/milestones/` instead of a consolidated roadmap handoff.
 - Agent routing log: `$hermes-requirements` and `$hermes-spec` gates predate
   this cleanup; this update aligns the touched handoff with the shared
   interface.
