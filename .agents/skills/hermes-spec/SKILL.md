@@ -80,25 +80,20 @@ Draft
   The main agent may reconcile and edit the final spec, but must not silently skip
   these gates.
 
-## Status Rules
-
-- `Draft`: requirements are still being shaped.
-- `Accepted`: implementation can start.
-- `Implemented`: code/docs have been changed but final verification may remain.
-- `Verified`: acceptance criteria have passed or documented exceptions exist.
-
 ## Output
 
-Return a handoff artifact:
+Use the spec status contract in `docs/WORKFLOWS.md` as the canonical source for
+status language.
 
-- producer skill and intended consumer skill
+Return a handoff artifact using the shared interface in `docs/WORKFLOWS.md`.
+
+Include these spec-specific fields:
+
 - spec or milestone path
-- status
 - key contracts and acceptance criteria
 - settled decisions carried forward from requirements
-- remaining open questions or blockers
+- remaining open questions
 - verification expectations
-- docs/specs/milestones that the next skill should read
 
 Do not hide new scope inside implementation notes.
 This skill writes or updates formal contracts under `docs/specs/` and

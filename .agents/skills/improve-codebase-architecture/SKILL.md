@@ -42,8 +42,9 @@ foundation.
 
 Read first: `README.md`, `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`,
 `docs/WORKFLOWS.md`, `docs/AGENT_ROLES.md`, `docs/DOCS_POLICY.md`, relevant
-files under `docs/specs/`, and relevant files under `docs/milestones/`. Read
-existing `docs/adr/` entries if present.
+files under `docs/specs/`, relevant files under `docs/milestones/`, and
+existing `docs/techdebt/` tickets if present. Read existing `docs/adr/`
+entries if present.
 
 Then inspect the repo area that matches the architecture review target. Current
 Hermes workspace areas include:
@@ -91,9 +92,10 @@ Hermes-specific examples that fit this review:
 
 ### 3. Present candidates
 
-Write a self-contained HTML file to the OS temp directory so nothing lands in
-the repo. Resolve the temp dir from `$TMPDIR`, falling back to `/tmp` or
-`%TEMP%`, and write to
+Write a self-contained HTML file to the OS temp directory so bulky generated
+reports do not land in the repo. Durable follow-up tickets live in
+`docs/techdebt/` and must be self-contained because temp links may expire.
+Resolve the temp dir from `$TMPDIR`, falling back to `/tmp` or `%TEMP%`, and write to
 `<tmpdir>/hermes-agent-architecture-review-<timestamp>.html`. Open it for the
 user if allowed by the current environment and report the absolute path.
 
@@ -114,26 +116,23 @@ End with a top recommendation and why it should be handled first.
 See [HTML-REPORT.md](HTML-REPORT.md) for the scaffold, diagram patterns, and
 styling guidance.
 
-If `docs/techdebt/` is an accepted documentation destination for the workspace,
-also create markdown handoff tickets in the repo under that directory, one file
-per candidate. Use [TECHDEBT-TICKET.md](TECHDEBT-TICKET.md) as the template and
-name files `YYYY-MM-DD-<candidate-slug>.md`. For example, a report with four
-architecture suggestions should produce four separate markdown files, not one
-combined document. Each ticket should link back to the HTML report anchor,
-capture the current code snapshot, include before/after Mermaid diagrams, and
-state acceptance criteria for implementation. Keep these tickets proposed until
-the user chooses one for grilling.
-
-If `docs/techdebt/` is not an accepted documentation destination, do not create
-repo ticket files during the report. Instead, include ticket-ready markdown
-summaries inside the temp HTML report and emit a `$hermes-context` handoff that
-asks whether architecture candidate tickets should become a durable docs
-destination.
+Use `doc-curator` to create or update markdown handoff tickets in the repo
+under `docs/techdebt/`, one file per candidate, or record an approved manual
+fallback in the agent routing log. Use [TECHDEBT-TICKET.md](TECHDEBT-TICKET.md)
+as the template and name files `YYYY-MM-DD-<candidate-slug>.md`. For example, a
+report with four architecture suggestions should produce four separate markdown
+files, not one combined document. Each ticket should include enough copied
+context to stand alone, record the temp report path when available, capture the
+current code snapshot, include before/after Mermaid diagrams, and state
+acceptance criteria for implementation. Default new tickets to `proposed`
+unless the review or follow-up workflow has already settled a different status
+under `docs/DOCS_POLICY.md`.
 
 Ticket examples that fit the current workspace:
 
 - `2026-06-28-deepen-finance-brief-pipeline.md`
 - `2026-06-28-centralize-spec-status-rules.md`
+- `2026-06-28-define-architecture-candidate-destination.md`
 - `2026-06-28-shrink-skill-handoff-surface.md`
 
 Do not implement or finalize a new interface during the report. After the file

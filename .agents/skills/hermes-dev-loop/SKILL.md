@@ -18,15 +18,18 @@ reconciliation, and final reporting.
 
 1. Read the accepted spec, `AGENTS.md`, `docs/PRODUCT.md`, and
    `docs/CONTEXT.md`.
-2. Use `explorer` to inspect relevant files and current patterns.
-3. Ask the main agent to confirm any spec gap before implementation.
-4. Use one `implementer` at a time for write-heavy work unless the Accepted
+2. Use `$codex-agent-tracer` to start a `.agent-trace/<workflow-id>/`
+   trace folder before exploration. Keep it current through delegation, edits,
+   commands, verification, review, duplicated-work findings, and handoff.
+3. Use `explorer` to inspect relevant files and current patterns.
+4. Ask the main agent to confirm any spec gap before implementation.
+5. Use one `implementer` at a time for write-heavy work unless the Accepted
    spec explicitly decomposes disjoint write scopes.
-5. Use `test-runner` for targeted verification.
-6. Use `reviewer` to compare the diff against the spec. Independent read-only
+6. Use `test-runner` for targeted verification.
+7. Use `reviewer` to compare the diff against the spec. Independent read-only
    passes may run in parallel.
-7. Have the main agent apply any final doc/spec status updates.
-8. Leave a follow-up handoff for `$hermes-context` or `$hermes-spec` when the
+8. Have the main agent apply any final doc/spec status updates.
+9. Leave a follow-up handoff for `$hermes-context` or `$hermes-spec` when the
    implementation settles terminology, changes scope, or exposes a spec gap.
 
 ## Guardrails
@@ -39,11 +42,13 @@ reconciliation, and final reporting.
 
 ## Output
 
-Return:
+Return a handoff artifact using the shared interface in `docs/WORKFLOWS.md`.
 
-- producer skill and intended follow-up consumer skill, if any
-- spec path and status
+Include these dev-loop-specific fields:
+
+- spec path
 - files changed
 - verification commands and results
 - reviewer findings
+- trace path and duplicated-work findings
 - remaining risks or follow-up specs

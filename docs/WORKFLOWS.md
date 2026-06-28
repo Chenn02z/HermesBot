@@ -9,14 +9,31 @@ Specs define truth. Skills define process. Agents execute roles. Model choices
 are capacity decisions.
 
 Workflow skills should leave explicit handoff artifacts for the next skill
-instead of relying on conversational memory. A handoff should name:
+instead of relying on conversational memory.
+
+## Handoff Artifact Interface
+
+Every non-trivial Hermes workflow handoff must include these shared fields:
 
 - producer skill
 - intended consumer skill
 - artifact path or packet contents
+- status
 - settled decisions
 - unresolved blockers
 - docs, specs, or milestones the next skill must read
+- agent routing log
+
+The agent routing log should record the subagents or equivalent manual fallback
+used by the workflow. For each required agent gate, say one of:
+
+- used
+- unavailable; manual fallback approved
+- not applicable for this scoped pass
+
+For workflows that use `$codex-agent-tracer`, the `.agent-trace` file is the
+detailed evidence log. The handoff artifact remains the canonical summary and
+must include the trace path plus any missing-event risks.
 
 Use skill names literally in status and handoff language. If spec-like drafting
 was done manually while `$hermes-requirements` was active, describe it as manual
@@ -66,15 +83,25 @@ contracts, acceptance criteria, and spec status.
 It consumes `$hermes-requirements` handoffs and writes or updates contracts
 under `docs/specs/` and `docs/milestones/`.
 
-Spec status values:
+## Spec Status Contract
+
+`docs/WORKFLOWS.md` is the canonical source for spec and milestone status
+language.
+
+Status values:
 
 - `Draft`: requirements are still being shaped.
 - `Accepted`: implementation can start.
 - `Implemented`: code/docs have been changed but final verification may remain.
 - `Verified`: acceptance criteria have passed or documented exceptions exist.
 
+Header status, downstream handoff status, and skill output status must agree.
+Do not leave a spec header at `Implemented` while a handoff still says
+`Accepted`, or vice versa.
+
 When a spec or milestone is ready for implementation, `$hermes-spec` should
-leave an explicit handoff for `$hermes-dev-loop`.
+leave an explicit handoff for `$hermes-dev-loop` using the shared handoff
+artifact interface.
 
 ## `$hermes-dev-loop`
 
@@ -84,10 +111,14 @@ verification and review.
 The dev loop should:
 
 - read the accepted spec and canonical docs
+- use `$codex-agent-tracer` to maintain a `.agent-trace` log for delegation,
+  edits, commands, verification, review, handoff, and duplicated-work findings
 - inspect current repo patterns before editing
 - confirm spec gaps before implementation
 - use targeted verification
 - compare the diff against the spec
+- update the spec or milestone status so it matches the current implementation
+  state
 - leave follow-up handoffs for `$hermes-context` or `$hermes-spec` when the work
   settles terminology, changes scope, or exposes a spec gap
 

@@ -30,6 +30,7 @@ reconciliation, and final reporting.
 - `docs/DOCS_POLICY.md`: documentation destinations and status rules.
 - `docs/specs/`: executable component/workflow contracts.
 - `docs/milestones/`: larger deliverable slices.
+- `docs/techdebt/`: durable architecture and tech-debt candidate tickets.
 - `.agents/skills/`: reusable development workflows.
 - `.codex/agents/`: role/model/permission presets.
 
@@ -47,7 +48,11 @@ reconciliation, and final reporting.
 
 ## Output
 
-Return changed docs, settled terms, removed contradictions, and any follow-up
-skill/spec updates still needed. If another workflow must continue, return a
-handoff artifact naming the intended consumer skill, relevant docs/specs, settled
-context decisions, and remaining blockers.
+Return a handoff artifact using the shared interface in `docs/WORKFLOWS.md`.
+
+Include these context-specific fields:
+
+- changed docs
+- settled terms or workflow decisions
+- removed contradictions
+- follow-up skill or spec updates still needed

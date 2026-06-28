@@ -35,10 +35,12 @@ reconciliation, and final reporting.
 
 ## Output
 
-Return a handoff artifact for `$hermes-spec`:
+Return a handoff artifact for `$hermes-spec` using the shared interface in
+`docs/WORKFLOWS.md`.
 
-- the resolved workflow
-- producer skill and intended consumer skill
+Include these requirements-specific fields:
+
+- resolved workflow
 - proposed spec name/path
 - proposed milestone name/path, when the workflow is milestone work
 - scope boundary
@@ -46,7 +48,6 @@ Return a handoff artifact for `$hermes-spec`:
 - acceptance criteria candidates
 - settled user decisions
 - blocking questions
-- docs/specs/milestones that `$hermes-spec` should read next
 
 Do not create or update a full `docs/specs/...` file from this skill. Do not
 start implementation from this skill unless the user explicitly waives the spec

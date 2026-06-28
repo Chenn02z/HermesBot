@@ -1,18 +1,15 @@
 # Tech Debt Ticket Template
 
-Use this template for one architecture review candidate. If `docs/techdebt/` is
-an accepted documentation destination for the workspace, copy it into
-`docs/techdebt/YYYY-MM-DD-<candidate-slug>.md`. If that destination is not
-accepted, keep the ticket content in the temp HTML report and emit a
-`$hermes-context` handoff asking whether durable architecture candidate tickets
-belong in the docs policy.
+Use this template for one architecture review candidate. Copy it into
+`docs/techdebt/YYYY-MM-DD-<candidate-slug>.md`.
 
 ````markdown
 # <Candidate Title>
 
-**Status:** proposed
+**Status:** proposed | accepted | implemented | rejected
 **Review date:** YYYY-MM-DD
-**Source report:** `<absolute temp HTML path>#<candidate-anchor>`
+**Source report:** temp report path if still available; this ticket must include
+enough copied context to stand alone
 **Recommendation:** Strong | Worth exploring | Speculative
 **Area:** workflow | skills | agents | finance | tests | docs
 **Spec/milestone/doc anchor:** `docs/specs/...`, `docs/milestones/...`, or `docs/...`
@@ -75,4 +72,8 @@ flowchart LR
 
 Record settled answers from `grill-with-docs` here. Link an ADR only when the
 decision is hard to reverse or surprising.
+
+## Implementation Notes
+
+Leave concise notes when the ticket moves to `implemented` or `rejected`.
 ````

@@ -22,8 +22,9 @@ and workflow context, not implementation details.
   scenarios, acceptance criteria candidates, and blocking questions.
 - `handoff artifact`: the explicit output one workflow skill leaves for the
   next skill to consume. It names the producer skill, intended consumer skill,
-  artifact path or packet contents, settled decisions, unresolved blockers, and
-  any docs or specs that must be read next.
+  artifact path or packet contents, status, settled decisions, unresolved
+  blockers, docs or specs that must be read next, and the agent routing log
+  defined in `docs/WORKFLOWS.md`.
 - `spec`: an executable contract under `docs/specs/` that defines goal, scope,
   contracts, failure modes, acceptance criteria, and verification.
 - `milestone`: a larger deliverable slice under `docs/milestones/`.
