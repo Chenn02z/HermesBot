@@ -22,11 +22,12 @@ reconciliation, and final reporting.
    - context/terminology decision
    - implementation request that needs a spec first
 3. Ask at most one blocking question if the repo cannot answer it.
+4. Use `$grill-with-docs` to keep asking questions and align on needs and 
+   requirements of the user
 4. Use `spec-planner` for the proposed workflow, scope boundary, scenarios, and
    acceptance criteria candidates.
-5. Use `spec-griller` or `$grill-with-docs` to challenge ambiguity, failure
-   modes, context drift, and scope creep. Independent read-only passes may run
-   in parallel.
+5. Use `spec-griller` to challenge ambiguity, failure modes, context drift, 
+   and scope creep. Independent read-only passes may run in parallel.
 6. Have the main agent settle decisions with the user.
 7. If a term, boundary, workflow, product direction, or skill usage changes,
    hand off to `$hermes-context` after the decision is settled.
