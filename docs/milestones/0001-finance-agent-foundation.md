@@ -17,18 +17,18 @@ This milestone exists to keep the immediate finance work useful without turning
 
 - Producer skill: `$hermes-requirements`
 - Intended consumer skill: `$hermes-spec`
-- Next action: `$hermes-spec` should consume this handoff and write formal specs
-  under `docs/specs/`.
+- Next action: implement accepted spec `0001` with `$hermes-dev-loop`; keep
+  `0002` Draft until its strategy questions are resolved.
 
 ## Developer Workflow
 
 Requirements gathering -> milestone handoff -> spec authoring -> accepted spec
 implementation -> fixture-backed verification -> context maintenance.
 
-## Proposed Specs
+## Specs
 
-- `docs/specs/0001-finance-daily-market-brief.md`
-- `docs/specs/0002-finance-entry-zone-strategy.md`
+- `docs/specs/0001-finance-daily-market-brief.md` - Accepted
+- `docs/specs/0002-finance-entry-zone-strategy.md` - Draft
 
 ## Milestone Scope
 
@@ -59,11 +59,12 @@ Scope boundary:
   US-listed equity ticker symbols.
 - Accept an explicit `as_of` datetime.
 - Use fixture-backed market, quote, range, and news evidence.
-- Include general US market context and one section per ticker.
+- Include general US market context, one section per unique supported
+  normalized ticker, and visible sections for unsupported or ambiguous inputs.
 - Include source metadata, timestamps, and freshness labels.
 - Include a constrained `Research-Only Pullback Zone` section per ticker.
-- Keep deterministic data, deterministic calculations, and model-written
-  synthesis distinguishable.
+- Keep supplied data, deterministic calculations, and deterministic report
+  narrative distinguishable.
 - Defer live provider integrations, Telegram delivery, scheduling, persistent
   watchlists, trade execution, full technical analysis, scoring, ranking,
   strategy logic, and runtime finance sub-agent architecture.
@@ -71,7 +72,7 @@ Scope boundary:
 Scenarios:
 
 - The developer requests a market brief for `["NVDA", "AAPL", "MSFT"]` as of a
-  specific datetime and receives a dated markdown or plain-text report.
+  specific datetime and receives a dated markdown report.
 - A ticker has valid price evidence but missing news; the report still renders
   and marks the news section incomplete.
 - A ticker has stale quote data; the report labels the data stale and does not
@@ -81,12 +82,13 @@ Scenarios:
 
 Acceptance criteria candidates:
 
-- Valid fixtures produce one dated report with general market context and one
-  section per requested ticker.
+- Valid fixtures produce one dated markdown report with general market context,
+  one section per unique supported normalized ticker, and visible sections for
+  unsupported or ambiguous inputs.
 - Every factual price, market, and news claim traces to supplied fixture
   evidence with timestamp or source metadata.
 - The report distinguishes quote/range data, pullback-zone calculation, and
-  model-written synthesis.
+  deterministic report narrative.
 - The pullback-zone section uses only a simple fixture-backed heuristic:
   required fields are `current_price`, `recent_low_20d`, `recent_high_20d`, and
   quote `timestamp`; optional `support_level` overrides `recent_low_20d` as the
@@ -99,10 +101,13 @@ Acceptance criteria candidates:
   language.
 - Verification can run entirely against static fixtures without network access.
 
-Blocking questions for `$hermes-spec`:
+Resolved questions from `$hermes-spec` Draft:
 
-- Which fixture format should be required for `0001`?
-- Which market proxies are mandatory beyond S&P 500 and Nasdaq evidence?
+- `0001` requires static JSON-compatible fixtures.
+- `0001` requires S&P 500 and Nasdaq evidence. Dow, Russell 2000, VIX, sector
+  proxies, macro notes, and market news are optional.
+- `0001` uses deterministic template-rendered report text only; model-written
+  synthesis is deferred to a later spec.
 
 ## Requirements Packet: `0002`
 
@@ -155,9 +160,8 @@ Blocking questions for `$hermes-spec`:
 
 ## Milestone Acceptance Candidates
 
-- `$hermes-spec` writes formal Draft specs for `0001` and `0002` from this
-  handoff.
-- `0001` can be reviewed and accepted before implementation starts.
+- `$hermes-spec` writes formal specs for `0001` and `0002` from this handoff.
+- `0001` is reviewed and accepted before implementation starts.
 - `0002` remains Draft until its strategy questions are resolved.
 - Durable docs identify finance as the first domain expansion while preserving
   Telegram, scheduling, live provider integration, and trade execution as later
@@ -182,9 +186,12 @@ Blocking questions for `$hermes-spec`:
 
 ## Handoff
 
-- Producer skill: `$hermes-requirements`
-- Intended consumer skill: `$hermes-spec`
-- Required next reads: `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`, and
-  this milestone handoff.
-- `$hermes-spec` should write formal Draft specs under `docs/specs/` and leave a
-  follow-up handoff for `$hermes-dev-loop` only after a spec is Accepted.
+- Producer skills: `$hermes-requirements`, then `$hermes-spec`
+- Intended consumer skill: `$hermes-dev-loop` for accepted `0001`;
+  `$hermes-spec` for unresolved `0002`
+- Required next reads: `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`,
+  `docs/specs/0001-finance-daily-market-brief.md`,
+  `docs/specs/0002-finance-entry-zone-strategy.md`, and this milestone handoff.
+- Formal specs now live under `docs/specs/`; `0001` is Accepted and `0002`
+  remains Draft.
+- `$hermes-dev-loop` should consume `0001` next.
