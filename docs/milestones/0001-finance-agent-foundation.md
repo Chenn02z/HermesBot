@@ -17,8 +17,9 @@ This milestone exists to keep the immediate finance work useful without turning
 
 - Producer skill: `$hermes-requirements`
 - Intended consumer skill: `$hermes-spec`
-- Next action: implement accepted spec `0001` with `$hermes-dev-loop`; keep
-  `0002` Draft until its strategy questions are resolved.
+- Next action: run context maintenance for implemented `0001` if durable
+  terminology or workflow boundaries changed; keep `0002` Draft until its
+  strategy questions are resolved.
 
 ## Developer Workflow
 
@@ -27,7 +28,7 @@ implementation -> fixture-backed verification -> context maintenance.
 
 ## Specs
 
-- `docs/specs/0001-finance-daily-market-brief.md` - Accepted
+- `docs/specs/0001-finance-daily-market-brief.md` - Implemented
 - `docs/specs/0002-finance-entry-zone-strategy.md` - Draft
 
 ## Milestone Scope
@@ -192,6 +193,8 @@ Blocking questions for `$hermes-spec`:
 - Required next reads: `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`,
   `docs/specs/0001-finance-daily-market-brief.md`,
   `docs/specs/0002-finance-entry-zone-strategy.md`, and this milestone handoff.
-- Formal specs now live under `docs/specs/`; `0001` is Accepted and `0002`
+- Formal specs now live under `docs/specs/`; `0001` is Implemented and `0002`
   remains Draft.
-- `$hermes-dev-loop` should consume `0001` next.
+- `$hermes-context` may consume the implemented `0001` handoff if durable
+  docs need alignment; `$hermes-spec` should consume unresolved `0002` when its
+  strategy questions are ready.

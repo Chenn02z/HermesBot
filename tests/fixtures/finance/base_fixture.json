@@ -1,0 +1,126 @@
+{
+  "as_of": "2026-06-26T16:30:00-04:00",
+  "market_context": {
+    "indices": [
+      {
+        "symbol": "SPY",
+        "name": "S&P 500 proxy",
+        "price": 650.0,
+        "change_percent": 0.4,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      {
+        "symbol": "QQQ",
+        "name": "Nasdaq proxy",
+        "price": 580.0,
+        "change_percent": 0.7,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      }
+    ],
+    "notes": [
+      {
+        "headline": "Market breadth improved into the close",
+        "timestamp": "2026-06-26T15:45:00-04:00",
+        "source": "fixture"
+      }
+    ]
+  },
+  "invalid_inputs": {
+    "BRK.B": "Ambiguous class/share formatting in fixture"
+  },
+  "tickers": {
+    "NVDA": {
+      "company_name": "NVIDIA Corporation",
+      "quote": {
+        "current_price": 171.82,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "range_20d": {
+        "recent_low_20d": 165.0,
+        "recent_high_20d": 184.5,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "support_level": {
+        "price": 166.0,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "news": [
+        {
+          "headline": "Example headline",
+          "summary": "Short fixture-backed summary.",
+          "timestamp": "2026-06-26T10:00:00-04:00",
+          "source": "fixture"
+        }
+      ]
+    },
+    "MSFT": {
+      "company_name": "Microsoft Corporation",
+      "quote": {
+        "current_price": 503.51,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "range_20d": {
+        "recent_low_20d": 489.0,
+        "recent_high_20d": 512.4,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "news": []
+    },
+    "AAPL": {
+      "company_name": "Apple Inc.",
+      "quote": {
+        "current_price": 214.25,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "range_20d": {
+        "recent_low_20d": 208.0,
+        "recent_high_20d": 221.75,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "support_level": {
+        "price": 209.0,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "news": [
+        {
+          "headline": "Older Apple headline",
+          "summary": "Still present for stale-news testing.",
+          "timestamp": "2026-06-17T12:00:00-04:00",
+          "source": "fixture"
+        }
+      ]
+    },
+    "TSLA": {
+      "company_name": "Tesla, Inc.",
+      "quote": {
+        "current_price": 299.0,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "range_20d": {
+        "recent_low_20d": 295.0,
+        "recent_high_20d": 330.0,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "news": [
+        {
+          "headline": "TSLA fixture item",
+          "summary": "Used for deterministic rendering.",
+          "timestamp": "2026-06-25T09:30:00-04:00",
+          "source": "fixture"
+        }
+      ]
+    }
+  }
+}
