@@ -17,9 +17,8 @@ This milestone exists to keep the immediate finance work useful without turning
 
 - Producer skill: `$hermes-requirements`
 - Intended consumer skill: `$hermes-spec`
-- Next action: keep `0002` Draft until its strategy questions are resolved;
-  use `$hermes-context` only when implemented finance work settles durable
-  terminology or workflow boundaries.
+- Next action: use `$hermes-context` if the verified finance work settles
+  durable terminology or workflow boundaries.
 
 ## Developer Workflow
 
@@ -29,7 +28,7 @@ implementation -> fixture-backed verification -> context maintenance.
 ## Specs
 
 - `docs/specs/0001-finance-daily-market-brief.md` - Implemented
-- `docs/specs/0002-finance-entry-zone-strategy.md` - Draft
+- `docs/specs/0002-finance-entry-zone-strategy.md` - Verified
 
 ## Milestone Scope
 
@@ -120,14 +119,17 @@ Proposed spec path: `docs/specs/0002-finance-entry-zone-strategy.md`
 Scope boundary:
 
 - Build on the `0001` evidence and report boundaries.
-- Define richer technical-analysis inputs such as moving averages, support and
-  resistance levels, volatility, volume, trend, and recent price ranges.
-- Define staged research-only entry-zone strategy logic.
-- Define optional scoring or ranking across watched tickers.
-- Separate deterministic signal calculation from model-written explanation.
+- Define long-term investing research as the strategy horizon.
+- Define exact fixture-backed technical-analysis inputs for moving averages,
+  support and resistance, volatility, volume, momentum, and 52-week range.
+- Define deterministic research-only entry-zone strategy logic.
+- Define deterministic scoring, labels, and ranking across watched tickers.
+- Separate supplied evidence, deterministic signal calculation, and
+  deterministic template-rendered narrative.
 - Preserve the `0001` financial-advice boundary.
-- Defer implementation until `0001` is stable and the open strategy questions
-  are resolved.
+- Defer model-written synthesis, valuation, fundamentals, live providers,
+  Telegram, persistent watchlists, alerts, brokerage integration, and runtime
+  finance sub-agents to later specs.
 
 Scenarios:
 
@@ -140,30 +142,31 @@ Scenarios:
 
 Acceptance criteria candidates:
 
-- The formal spec defines exact supported strategy inputs before
+- The accepted spec defines exact supported strategy inputs before
   implementation.
-- Every score, rank, or entry-zone candidate is reproducible from deterministic
-  fixture inputs.
-- The output distinguishes calculated signals from model-written explanation.
+- Every score, rank, label, conflict note, or observation zone is reproducible
+  from deterministic fixture inputs.
+- The output distinguishes supplied evidence, calculated signals, and
+  deterministic template-rendered narrative.
 - The output preserves research-only wording and excludes trade instructions,
   position sizing, guarantees, and brokerage-action language.
 - Missing or stale signal inputs are visible in the output.
 
-Blocking questions for `$hermes-spec`:
+Resolved questions from `$hermes-spec`:
 
-- What investment horizon should `0002` optimize for: intraday, swing trade,
-  multi-week accumulation, or long-term investing?
-- Should scoring be numeric, tiered, or avoided in favor of qualitative setup
-  labels?
-- Which technical indicators are required for the first accepted strategy
-  version?
-- Should valuation or fundamental signals be included in `0002` or deferred?
+- `0002` optimizes for long-term investing research.
+- `0002` uses a deterministic 100-point technical setup score plus tiered
+  research-candidate labels.
+- Required technical groups are moving averages, RSI, 52-week range,
+  support/resistance, ATR volatility, and volume.
+- Valuation and fundamental signals are deferred to later specs.
+- Model-written synthesis is deferred to later specs.
 
 ## Milestone Acceptance Candidates
 
 - `$hermes-spec` writes formal specs for `0001` and `0002` from this handoff.
 - `0001` is reviewed and accepted before implementation starts.
-- `0002` remains Draft until its strategy questions are resolved.
+- `0002` is verified after implementation and targeted finance checks.
 - Durable docs identify finance as the first domain expansion while preserving
   Telegram, scheduling, live provider integration, and trade execution as later
   specs.
@@ -180,8 +183,6 @@ Blocking questions for `$hermes-spec`:
 
 ## Open Questions
 
-- Should `0002` include valuation/fundamental signals or stay purely technical
-  for its first accepted version?
 - Which live data providers should be specified after fixture-backed behavior is
   verified?
 
@@ -189,22 +190,22 @@ Blocking questions for `$hermes-spec`:
 
 - Producer skills: `$hermes-requirements`, then `$hermes-spec`
 - Intended consumer skill: `$hermes-dev-loop` for accepted `0001`;
-  `$hermes-spec` for unresolved `0002`
+  `$hermes-context` for verified `0002` context maintenance when needed
 - Artifact path: `docs/milestones/0001-finance-agent-foundation.md`.
 - Status: Draft.
 - Settled decisions: `0001` is Implemented and remains the fixture-backed
-  finance brief slice; `0002` remains Draft until strategy questions are
-  resolved.
-- Unresolved blockers: `0002` strategy horizon, scoring style, technical
-  indicators, and valuation/fundamental scope remain open.
+  finance brief slice; `0002` is Verified as the fixture-backed long-term
+  entry-zone strategy slice.
+- Unresolved blockers: none for verified `0002`; live data providers remain a
+  later-spec question.
 - Required next reads: `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`,
   `docs/specs/0001-finance-daily-market-brief.md`,
   `docs/specs/0002-finance-entry-zone-strategy.md`, and this milestone handoff.
 - Formal specs now live under `docs/specs/`; `0001` is Implemented and `0002`
-  remains Draft.
+  is Verified.
 - `$hermes-context` should consume the implemented `0001` handoff when durable
-  docs or workflow contracts need alignment; `$hermes-spec` should consume
-  unresolved `0002` when its strategy questions are ready.
+  docs or workflow contracts need alignment; `$hermes-context` should consume
+  verified `0002` if durable docs or workflow contracts need alignment.
 - Agent routing log: `$hermes-requirements` and `$hermes-spec` gates predate
   this cleanup; this update aligns the touched handoff with the shared
   interface.
