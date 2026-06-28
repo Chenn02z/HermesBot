@@ -17,9 +17,9 @@ This milestone exists to keep the immediate finance work useful without turning
 
 - Producer skill: `$hermes-requirements`
 - Intended consumer skill: `$hermes-spec`
-- Next action: run context maintenance for implemented `0001` if durable
-  terminology or workflow boundaries changed; keep `0002` Draft until its
-  strategy questions are resolved.
+- Next action: keep `0002` Draft until its strategy questions are resolved;
+  use `$hermes-context` only when implemented finance work settles durable
+  terminology or workflow boundaries.
 
 ## Developer Workflow
 
@@ -190,11 +190,21 @@ Blocking questions for `$hermes-spec`:
 - Producer skills: `$hermes-requirements`, then `$hermes-spec`
 - Intended consumer skill: `$hermes-dev-loop` for accepted `0001`;
   `$hermes-spec` for unresolved `0002`
+- Artifact path: `docs/milestones/0001-finance-agent-foundation.md`.
+- Status: Draft.
+- Settled decisions: `0001` is Implemented and remains the fixture-backed
+  finance brief slice; `0002` remains Draft until strategy questions are
+  resolved.
+- Unresolved blockers: `0002` strategy horizon, scoring style, technical
+  indicators, and valuation/fundamental scope remain open.
 - Required next reads: `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`,
   `docs/specs/0001-finance-daily-market-brief.md`,
   `docs/specs/0002-finance-entry-zone-strategy.md`, and this milestone handoff.
 - Formal specs now live under `docs/specs/`; `0001` is Implemented and `0002`
   remains Draft.
-- `$hermes-context` may consume the implemented `0001` handoff if durable
-  docs need alignment; `$hermes-spec` should consume unresolved `0002` when its
-  strategy questions are ready.
+- `$hermes-context` should consume the implemented `0001` handoff when durable
+  docs or workflow contracts need alignment; `$hermes-spec` should consume
+  unresolved `0002` when its strategy questions are ready.
+- Agent routing log: `$hermes-requirements` and `$hermes-spec` gates predate
+  this cleanup; this update aligns the touched handoff with the shared
+  interface.

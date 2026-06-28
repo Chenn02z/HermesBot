@@ -2,11 +2,13 @@ from __future__ import annotations
 
 import copy
 import json
+from datetime import datetime
 from pathlib import Path
 
 import pytest
 
 from hermes_finance import generate_daily_market_brief
+from hermes_finance._pullback import PullbackEvaluator
 
 FIXTURE_PATH = (
     Path(__file__).resolve().parents[1]
@@ -19,6 +21,11 @@ AS_OF = "2026-06-26T16:30:00-04:00"
 
 def load_fixture() -> dict:
     return json.loads(FIXTURE_PATH.read_text())
+
+
+def ticker_payload(symbol: str) -> dict:
+    fixture = load_fixture()
+    return copy.deepcopy(fixture["tickers"][symbol])
 
 
 def test_full_report_renders_order_duplicates_and_visible_invalid_inputs() -> None:
@@ -165,6 +172,55 @@ def test_pullback_zone_uses_recent_low_when_support_level_is_stale() -> None:
 
     assert "Candidate zone for NVDA: 165.00 to 169.95." in report
     assert "Reference price source: range_20d.recent_low_20d" in report
+
+
+def test_pullback_evaluator_prefers_fresh_support_level() -> None:
+    result = PullbackEvaluator().evaluate(
+        ticker_payload("NVDA"),
+        datetime.fromisoformat(AS_OF),
+    )
+
+    assert result.status == "evaluated"
+    assert result.lower == 166.0
+    assert result.upper == 170.98
+    assert result.reference_source == "support_level.price"
+    assert result.reference_timestamp == "2026-06-26T16:00:00-04:00"
+
+
+def test_pullback_evaluator_falls_back_to_recent_low_when_support_is_stale() -> None:
+    payload = ticker_payload("NVDA")
+    payload["support_level"]["timestamp"] = "2026-06-24T03:00:00-04:00"
+
+    result = PullbackEvaluator().evaluate(payload, datetime.fromisoformat(AS_OF))
+
+    assert result.status == "evaluated"
+    assert result.lower == 165.0
+    assert result.upper == 169.95
+    assert result.reference_source == "range_20d.recent_low_20d"
+    assert result.reference_timestamp == "2026-06-26T16:00:00-04:00"
+
+
+def test_pullback_evaluator_skips_when_quote_is_stale() -> None:
+    payload = ticker_payload("NVDA")
+    payload["quote"]["timestamp"] = "2026-06-24T03:00:00-04:00"
+
+    result = PullbackEvaluator().evaluate(payload, datetime.fromisoformat(AS_OF))
+
+    assert result.status == "skipped"
+    assert result.reason == "quote evidence is stale"
+
+
+def test_pullback_evaluator_skips_when_zone_reaches_current_price() -> None:
+    result = PullbackEvaluator().evaluate(
+        ticker_payload("TSLA"),
+        datetime.fromisoformat(AS_OF),
+    )
+
+    assert result.status == "skipped"
+    assert (
+        result.reason
+        == "candidate zone upper bound is greater than or equal to current price"
+    )
 
 
 @pytest.mark.parametrize(
