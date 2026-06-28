@@ -83,8 +83,8 @@ Sentiment    Support/Res   Margin Safety    Risks      │
 
 - `docs/milestones/0001-finance-agent-foundation.md`: Verified
   fixture-backed finance foundation.
-- `docs/milestones/0002-runtime-service-boundary.md`: Draft local runtime
-  boundary.
+- `docs/milestones/0002-runtime-service-boundary.md`: Accepted local FastAPI
+  runtime boundary.
 - `docs/milestones/0003-finance-evidence-provider-contract.md`: Draft
   provider-neutral evidence adapter contract.
 - `docs/milestones/0004-live-finance-provider-integration.md`: Draft first
