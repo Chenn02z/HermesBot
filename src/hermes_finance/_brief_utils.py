@@ -18,6 +18,9 @@ PROHIBITED_OUTPUT_PHRASES = (
     "buy now",
     "place an order",
     "execute",
+    "entry recommendation",
+    "recommended entry",
+    "accumulate now",
     "position sizing",
     "guarantees",
     "trade instructions",
@@ -140,6 +143,4 @@ def assert_report_language(report: str) -> None:
     lower_report = report.lower()
     for phrase in PROHIBITED_OUTPUT_PHRASES:
         if phrase in lower_report:
-            raise AssertionError(
-                f"prohibited phrase found in report output: {phrase}"
-            )
+            raise AssertionError(f"prohibited phrase found in report output: {phrase}")

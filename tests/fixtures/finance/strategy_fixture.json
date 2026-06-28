@@ -1,0 +1,222 @@
+{
+  "as_of": "2026-06-26T16:30:00-04:00",
+  "invalid_inputs": {
+    "BRK.B": "Ambiguous class/share formatting in fixture"
+  },
+  "tickers": {
+    "META": {
+      "company_name": "Meta Platforms, Inc.",
+      "quote": {
+        "current_price": 682.35,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "strategy": {
+        "moving_averages": {
+          "sma_50": 660.0,
+          "sma_200": 575.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "momentum": {
+          "rsi_14": 54.2,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "range_52w": {
+          "low": 442.65,
+          "high": 740.91,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "support_resistance": {
+          "support_1": 650.0,
+          "resistance_1": 720.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volatility": {
+          "atr_14": 18.25,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volume": {
+          "latest_volume": 14500000,
+          "avg_volume_20d": 13200000,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        }
+      }
+    },
+    "MSFT": {
+      "company_name": "Microsoft Corporation",
+      "quote": {
+        "current_price": 503.51,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "strategy": {
+        "moving_averages": {
+          "sma_50": 495.0,
+          "sma_200": 470.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "momentum": {
+          "rsi_14": 63.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "range_52w": {
+          "low": 385.0,
+          "high": 535.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "support_resistance": {
+          "support_1": 470.0,
+          "resistance_1": 525.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volatility": {
+          "atr_14": 28.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volume": {
+          "latest_volume": 700000.0,
+          "avg_volume_20d": 1000000.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        }
+      }
+    },
+    "NVDA": {
+      "company_name": "NVIDIA Corporation",
+      "quote": {
+        "current_price": 171.82,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "strategy": {
+        "moving_averages": {
+          "sma_50": 168.0,
+          "sma_200": 150.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "momentum": {
+          "rsi_14": 35.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "range_52w": {
+          "low": 86.5,
+          "high": 184.5,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "support_resistance": {
+          "support_1": 160.0,
+          "resistance_1": 180.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volatility": {
+          "atr_14": 8.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volume": {
+          "latest_volume": 900000.0,
+          "avg_volume_20d": 1200000.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        }
+      }
+    },
+    "AMZN": {
+      "company_name": "Amazon.com, Inc.",
+      "quote": {
+        "current_price": 205.0,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "strategy": {
+        "moving_averages": {
+          "sma_50": 198.0,
+          "sma_200": 180.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "momentum": {
+          "rsi_14": 50.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "range_52w": {
+          "low": 150.0,
+          "high": 230.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "support_resistance": {
+          "support_1": 195.0,
+          "resistance_1": 220.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volatility": {
+          "atr_14": 6.5,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        }
+      }
+    },
+    "TSLA": {
+      "company_name": "Tesla, Inc.",
+      "quote": {
+        "current_price": 299.0,
+        "timestamp": "2026-06-26T16:00:00-04:00",
+        "source": "fixture"
+      },
+      "strategy": {
+        "moving_averages": {
+          "sma_50": 310.0,
+          "sma_200": 320.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "momentum": {
+          "rsi_14": 75.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "range_52w": {
+          "low": 210.0,
+          "high": 330.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "support_resistance": {
+          "support_1": 280.0,
+          "resistance_1": 298.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volatility": {
+          "atr_14": 25.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        },
+        "volume": {
+          "latest_volume": 3000000.0,
+          "avg_volume_20d": 1000000.0,
+          "timestamp": "2026-06-26T16:00:00-04:00",
+          "source": "fixture"
+        }
+      }
+    }
+  }
+}
