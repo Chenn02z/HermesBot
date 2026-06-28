@@ -2,7 +2,7 @@
 
 ## Status
 
-Implemented
+Verified
 
 ## Goal
 
@@ -359,10 +359,12 @@ Deferred to later specs:
 - Producer skill: `$hermes-dev-loop`
 - Intended consumer skill: `$hermes-context`.
 - Artifact path: `docs/specs/0001-finance-daily-market-brief.md`.
-- Status: Implemented.
+- Status: Verified; implementation and verification complete.
 - Settled decisions: `0001` remains fixture-backed, deterministic, and
-  implemented behind the public `generate_daily_market_brief(...)` interface.
+  verified behind the public `generate_daily_market_brief(...)` interface.
 - Unresolved blockers: none for `0001`.
+- Verification: full `uv run pytest` passed with `60 passed`; full
+  `uv run ruff check .` passed.
 - Required next reads: `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`,
   `docs/milestones/0001-finance-agent-foundation.md`, and this spec.
 - Agent routing log: `$hermes-dev-loop` used `explorer`, `implementer`,

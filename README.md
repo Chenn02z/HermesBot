@@ -1,10 +1,18 @@
 # Hermes Bot
 
-> Your personal AI operations platform.
+> A specs-driven workspace for a personal AI operations product.
 
-Hermes is a Telegram-native AI orchestrator that coordinates specialized agents for personal use cases
+Hermes Bot is a Hermes Agent development workspace for building a dingle-user 
+sersonal AI operations system. The current verified implementation is a 
+fixture-backed finance research foundation. Telegram delivery, live
+providers, Hermes Agent runtime integration, OpenRouter-backed model synthesis,
+and AWS deployment remain future milestone work until introduced by accepted
+specs.
 
-Rather than being a single chatbot, Hermes acts as an operating system for AI agents. It receives requests, plans workflows, delegates work to the appropriate agents, synthesizes results using frontier and open-source language models, and delivers concise, actionable responses through Telegram.
+Rather than becoming one giant prompt, Hermes coordinates specialized agents,
+deterministic tools, external APIs, and model-backed synthesis behind explicit
+contracts. For model-backed runtime features that arrive in later specs,
+OpenRouter is the planned gateway for varied model usage.
 
 ---
 
@@ -33,9 +41,9 @@ The long-term goal is to become a personal AI operating system capable of contin
 
 # Long-Term Architecture Sketch
 
-The first finance milestone handoff starts with fixture-backed report
-generation. Telegram, scheduling, live provider integrations, and runtime
-finance sub-agents are deferred to later specs.
+The verified foundation starts with deterministic fixture-backed finance report
+generation. Telegram, scheduling, live provider integrations, OpenRouter model
+routing, and runtime finance sub-agents are deferred to later specs.
 
 ```
                         Telegram
@@ -62,9 +70,9 @@ Sentiment    Support/Res   Margin Safety    Risks      │
                             │
                     Chief Analyst
                             │
-                    Telegram Report
+              Deterministic Finance Report
                             │
-                   OpenRouter Gateway
+           Optional OpenRouter Model Gateway
                             │
        Qwen • Kimi • DeepSeek • GPT • Claude • ...
 ```
@@ -73,21 +81,31 @@ Sentiment    Support/Res   Margin Safety    Risks      │
 
 # Current Roadmap
 
-## Phase 1
+- `docs/milestones/0001-finance-agent-foundation.md`: Verified
+  fixture-backed finance foundation.
+- `docs/milestones/0002-runtime-service-boundary.md`: Draft local runtime
+  boundary.
+- `docs/milestones/0003-finance-evidence-provider-contract.md`: Draft
+  provider-neutral evidence adapter contract.
+- `docs/milestones/0004-live-finance-provider-integration.md`: Draft first
+  live finance provider integration.
+- `docs/milestones/0005-openrouter-model-routing-boundary.md`: Draft
+  OpenRouter model gateway boundary.
+- `docs/milestones/0006-hermes-agent-runtime-integration.md`: Draft Hermes
+  Agent runtime integration.
+- `docs/milestones/0007-telegram-delivery-foundation.md`: Draft Telegram
+  delivery foundation.
+- `docs/milestones/0008-persistence-watchlists-and-scheduling.md`: Draft
+  personal persistence, watchlists, and scheduling.
+- `docs/milestones/0009-containerization-and-runtime-config.md`: Draft
+  containerization and runtime config.
+- `docs/milestones/0010-aws-ec2-deployment-foundation.md`: Draft AWS EC2
+  deployment foundation.
+- `docs/milestones/0011-production-operations-hardening.md`: Draft operations
+  hardening.
 
-Finance Agent Foundation
-
-- proposed `0001`: fixture-backed daily-style market brief for a
-  caller-supplied US equity watchlist, including general market context and a
-  constrained research-only pullback-zone section
-- proposed `0002`: richer entry-zone strategy layer for technical analysis,
-  scoring, ranking, and strategy logic
-- Deferred to later specs:
-    - Telegram delivery
-    - automated scheduling
-    - persistent watchlists
-    - live provider integrations
-    - runtime finance sub-agent architecture
+Future roadmap work should be introduced as individual milestone files under
+`docs/milestones/`, not as one consolidated roadmap handoff.
 
 
 ---
@@ -105,16 +123,16 @@ Backend
 AI
 
 - Hermes
-- OpenRouter
+- OpenRouter for future model-backed runtime features
 
 Infrastructure
 
-- AWS EC2
-- Docker
+- AWS EC2 as future deployment target
+- Docker as future runtime packaging target
 
 Messaging
 
-- Telegram Bot API
+- Telegram Bot API as future delivery channel
 
 Memory
 
@@ -153,7 +171,10 @@ Produce recommendation
 
 The language model never becomes the source of truth.
 
-Instead, it explains, synthesises and reasons over trusted information produced by deterministic systems.
+Instead, it explains, synthesises and reasons over trusted information produced
+by deterministic systems. In finance workflows, deterministic tools and
+validated evidence remain the source of price, market, news, score, and
+strategy claims.
 
 ---
 

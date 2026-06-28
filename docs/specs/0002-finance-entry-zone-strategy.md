@@ -78,9 +78,9 @@ score, rank, label, or observation zone for that ticker.
 - no network access during verification
 
 `0002` must not weaken any `0001` failure mode or financial-advice boundary.
-Because `0001` is currently `Implemented`, not `Verified`, the `0002` dev loop
-must run the existing `0001` regression tests together with the new `0002`
-tests before marking this spec `Verified`.
+Because `0001` is verified, the `0002` dev loop must keep the existing `0001`
+regression tests in the full verification baseline together with the new `0002`
+tests.
 
 ### Public API
 

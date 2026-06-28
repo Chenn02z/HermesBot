@@ -9,6 +9,12 @@ and workflow context, not implementation details.
   substrate and product reference.
 - `workspace`: this repository and its docs, skills, specs, and agent presets.
 - `developer`: the human using this repo to drive specs-driven agentic work.
+- `single-user product boundary`: the current runtime product assumption: one
+  developer/operator and one authorized personal Telegram identity unless a
+  later accepted spec explicitly introduces broader user scope.
+- `OpenRouter gateway`: the planned model access boundary for varied model
+  usage in later accepted runtime specs. This is a product-direction decision,
+  not permission to add model calls outside accepted spec scope.
 - `main agent`: the active Codex thread that owns judgment, user interaction,
   final decisions, and final reporting.
 - `subagent`: a delegated Codex agent with a narrow role, model, reasoning, and
@@ -29,19 +35,18 @@ and workflow context, not implementation details.
   contracts, failure modes, acceptance criteria, and verification.
 - `milestone`: a larger deliverable slice under `docs/milestones/`.
 - `finance brief`: a finance-domain report generated from supplied evidence for
-  a caller-provided watchlist and as-of datetime. The first version is proposed
-  in `docs/milestones/0001-finance-agent-foundation.md` for later `$hermes-spec`
-  authoring.
+  a caller-provided watchlist and as-of datetime. The first version is verified
+  through `docs/specs/0001-finance-daily-market-brief.md`.
 - `watchlist`: the caller-supplied list of ticker symbols for one finance
   workflow invocation. Persistent watchlist storage requires a later spec.
 - `research-only pullback zone`: a constrained entry-related output that uses a
   deterministic fixture-backed heuristic and must not provide personalized
   advice, position sizing, guarantees, or trade instructions.
 - `entry-zone strategy`: the richer finance layer for technical analysis,
-  scoring, ranking, and strategy logic. It is proposed as follow-up spec work in
-  `docs/milestones/0001-finance-agent-foundation.md`.
+  scoring, ranking, and strategy logic. It is verified through
+  `docs/specs/0002-finance-entry-zone-strategy.md`.
 - `finance agent foundation`: the first finance-domain milestone, defined by
-  `docs/milestones/0001-finance-agent-foundation.md`.
+  and verified in `docs/milestones/0001-finance-agent-foundation.md`.
 - `requirement gathering`: the workflow that turns vague intent into a
   requirements packet for spec, milestone, or context work.
 - `spec grilling`: adversarial review of a spec before implementation.
@@ -111,12 +116,20 @@ task, subject to system/tool constraints and file ownership rules.
   the workflow boundary in the next update.
 - Bash scripts may invoke repeatable checks or `codex exec`, but they should not
   own agent routing decisions.
-- Finance is the first domain expansion for this workspace. Its initial
-  requirements are captured by
-  `docs/milestones/0001-finance-agent-foundation.md`, not by broad assumptions
-  from the README architecture sketch. `$hermes-spec` owns writing the proposed
-  `docs/specs/0001-finance-daily-market-brief.md` and
-  `docs/specs/0002-finance-entry-zone-strategy.md` contracts.
+- Finance is the first domain expansion for this workspace. Its fixture-backed
+  foundation is verified in `docs/milestones/0001-finance-agent-foundation.md`
+  and child specs `0001` and `0002`, not by broad assumptions from the README
+  architecture sketch.
+- Future roadmap slices should be captured as individual milestone files under
+  `docs/milestones/`, not maintained as one consolidated roadmap handoff after
+  milestone boundaries settle.
+- Model calls remain out of scope for verified fixture-backed finance specs.
+  When a later accepted runtime spec introduces model-backed behavior,
+  OpenRouter is the planned model gateway by default, and deterministic finance
+  tools plus validated evidence remain the factual source of truth.
+- The runtime product target is single-user by default. Multi-user auth, public
+  bot access, team accounts, billing, role administration, and multi-tenant
+  persistence require later accepted specs.
 
 ## Open Questions
 
