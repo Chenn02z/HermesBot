@@ -114,3 +114,12 @@ current repo state.
 Lead with contradictions, missing decisions, and scope risks. Recommend the
 smallest doc/spec update that removes ambiguity. Create an ADR only when the
 decision is hard to reverse, surprising, and a real trade-off.
+
+## Agent Routing Log
+
+Any non-trivial workflow using a Hermes skill must include an agent routing log
+in its final handoff.
+
+A required subagent named by the selected skill is a gate, not a suggestion. If
+the agent is skipped, the final handoff must say whether the workflow remains
+Draft, blocked, or approved for manual fallback.

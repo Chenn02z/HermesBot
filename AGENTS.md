@@ -37,7 +37,7 @@ agents must be introduced through specs, not assumed globally.
 Specs define truth. Skills define process. Agents execute roles. Model choices
 are capacity decisions.
 
-For non-trivial work:
+Any non-trivial work must have a routing trace. This includes:
 
 1. Gather requirements.
 2. Draft or update a spec.
@@ -52,7 +52,16 @@ user explicitly allows it or the change is obviously reversible.
 
 ## Main Skills
 
-Prefer Hermes-specific skills:
+ When the user invokes a Hermes skill, that invocation explicitly authorizes the
+ main agent to use the project subagents named by that skill's workflow.
+ 
+ If a selected skill says to use a subagent, the main agent must either:
+
+  1. invoke that subagent,
+  2. report that the subagent tool is unavailable, or
+  3. explicitly explain why the subagent is not applicable before proceeding.
+  
+ Silent manual substitution for a required subagent is a workflow violation.
 
 - `$hermes-requirements`: gather requirements and produce a pre-spec packet.
 - `$hermes-spec`: turn requirements into formal specs or milestone contracts.

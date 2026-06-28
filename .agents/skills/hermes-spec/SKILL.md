@@ -66,6 +66,20 @@ Draft
 9. When the spec or milestone is ready for implementation, leave an explicit
    handoff artifact for `$hermes-dev-loop`.
 
+
+## Required Agent Gates
+
+  For every `$hermes-spec` run that creates or materially revises a spec:
+
+  1. `spec-planner` must be used to draft or revise the spec from the requirements
+     packet.
+  2. `spec-griller` must be used before any spec is marked Accepted.
+  3. If either agent cannot be invoked, stop and report the blocker or explicitly
+     continue only if the user approves a manual fallback.
+
+  The main agent may reconcile and edit the final spec, but must not silently skip
+  these gates.
+
 ## Status Rules
 
 - `Draft`: requirements are still being shaped.
