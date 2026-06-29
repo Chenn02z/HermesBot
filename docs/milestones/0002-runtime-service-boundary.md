@@ -2,13 +2,13 @@
 
 ## Status
 
-Accepted
+Verified
 
 ## Source
 
 Split from the consolidated roadmap requirements handoff, which has been
-decomposed and removed. This milestone has been accepted as the next
-implementation contract after the verified fixture-backed finance foundation.
+decomposed and removed. This milestone was implemented and verified as the
+local runtime boundary after the verified fixture-backed finance foundation.
 
 ## Goal
 
@@ -268,7 +268,7 @@ Deferred to later specs:
 - Producer skill: `$hermes-spec`
 - Intended consumer skill: `$hermes-dev-loop`
 - Artifact path: `docs/milestones/0002-runtime-service-boundary.md`
-- Status: Accepted.
+- Status: Verified.
 - Settled decisions: runtime boundary comes before live providers, Telegram,
   persistence, Hermes Agent runtime integration, model routing, and deployment;
   the first interface is a local FastAPI-only ASGI service at
@@ -283,9 +283,8 @@ Deferred to later specs:
   responses; map request validation to deterministic `422` errors and
   finance-domain validation to deterministic `400` errors; preserve the verified
   finance APIs and exclusions.
-- Verification expectations: in-process ASGI route tests plus the existing
-  finance regression baseline, followed by `uv run pytest` and
-  `uv run ruff check .`.
+- Verification: `docs/specs/0003-runtime-service-boundary.md` is Verified; the
+  runtime app and in-process ASGI route tests exist in the current repo state.
 - Remaining open questions: non-blocking follow-up specs for CLI, non-markdown
   response formats, Hermes Agent runtime integration, and Telegram delivery.
 - Agent routing log: `spec-planner` used; `spec-griller` used; focused

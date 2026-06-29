@@ -83,11 +83,11 @@ Sentiment    Support/Res   Margin Safety    Risks      │
 
 - `docs/milestones/0001-finance-agent-foundation.md`: Verified
   fixture-backed finance foundation.
-- `docs/milestones/0002-runtime-service-boundary.md`: Accepted local FastAPI
+- `docs/milestones/0002-runtime-service-boundary.md`: Verified local FastAPI
   runtime boundary.
-- `docs/milestones/0003-finance-evidence-provider-contract.md`: Draft
+- `docs/milestones/0003-finance-evidence-provider-contract.md`: Accepted
   provider-neutral evidence adapter contract.
-- `docs/milestones/0004-live-finance-provider-integration.md`: Draft first
+- `docs/milestones/0004-live-finance-provider-integration.md`: Accepted first
   live finance provider integration.
 - `docs/milestones/0005-openrouter-model-routing-boundary.md`: Accepted
   OpenRouter model gateway boundary.

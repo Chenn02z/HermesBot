@@ -2,14 +2,13 @@
 
 ## Status
 
-Draft
+Accepted
 
-This draft is intentionally not Accepted yet. `0003` is sequenced after
-`docs/milestones/0002-runtime-service-boundary.md`, and `0002` is Accepted but
-not implemented in the current repo state. Implementation of this milestone
-must not begin until `0002` reaches Verified and `0003` is explicitly moved to
-Accepted, unless a later `$hermes-requirements` pass revises this sequencing
-dependency.
+`0003` is sequenced after the local runtime boundary. The prior blocker is
+resolved because `docs/specs/0003-runtime-service-boundary.md` is Verified and
+the runtime milestone has been rolled up to Verified. This milestone remains a
+contract for spec authoring only; implementation still requires an Accepted
+child spec under `docs/specs/`.
 
 ## Source
 
@@ -121,9 +120,11 @@ map_entry_zone_strategy_evidence(
 ```
 
 `payloads` are static recorded-provider payloads supplied by the caller or by
-tests. The adapter functions must not perform provider discovery, live fetches,
-credential reads, runtime imports, fixture file loading, persistence, model
-calls, Telegram calls, or brokerage actions.
+tests. They are verbatim provider response bodies captured per named evidence
+group; provider-specific specs must name the required payload keys. The adapter
+functions must not perform provider discovery, live fetches, credential reads,
+runtime imports, fixture file loading, persistence, model calls, Telegram
+calls, or brokerage actions.
 
 ### Canonical Fixture Output
 
@@ -182,9 +183,11 @@ return `fixture: None` plus diagnostics. It must not return a malformed fixture.
 
 ### Adapter Result Shape
 
-Adapter calls must return a deterministic result that separates canonical
-fixture data from diagnostics. The exact implementation type may be chosen
-during the later dev loop, but the result must carry:
+Adapter calls must return an importable deterministic result type from
+`hermes_finance.evidence_adapters` that separates canonical fixture data from
+diagnostics. The exact concrete type name and typing details may be set in the
+child spec, but the child spec cannot be marked Accepted until the importable
+result contract is explicit. The result must carry:
 
 - `fixture`: the canonical JSON-compatible fixture payload when mapping
   produces one.
@@ -272,10 +275,9 @@ touch Telegram, persistence, scheduling, deployment, or brokerage systems.
 
 ## Acceptance Criteria
 
-- The milestone remains Draft until the `0002` runtime service boundary reaches
-  Verified and this file is explicitly moved to Accepted by a later
-  `$hermes-requirements` pass, unless that later pass revises the sequencing
-  dependency.
+- The milestone is Accepted for child spec authoring because the local runtime
+  boundary child spec is Verified; implementation still requires an Accepted
+  child spec under `docs/specs/`.
 - Adapter tests map recorded quote, range, market context, and news payloads
   into a canonical `0001` fixture accepted by the daily market brief function.
 - Adapter tests map recorded quote and technical indicator payloads into a
@@ -318,40 +320,27 @@ touch Telegram, persistence, scheduling, deployment, or brokerage systems.
 
 ## Open Questions
 
-Blocking for acceptance:
-
-- `0002` is Accepted but not implemented in the current repo state. `0003`
-  should not be Accepted until that dependency is Verified, unless a later
-  `$hermes-requirements` pass explicitly revises this sequencing dependency.
-- User decision on 2026-06-29: keep this dependency blocked; do not waive the
-  `0002` Verified prerequisite for now.
+None blocking for milestone acceptance.
 
 Deferred to later specs:
 
-- Which live finance provider should be the first target after this contract is
-  accepted and verified?
-- What optional live smoke-test policy is acceptable once `0004` chooses a live
-  provider?
 - Whether runtime endpoints should accept adapter-produced evidence directly or
   continue accepting only canonical fixture payloads.
 
 ## Handoff
 
 - Producer skill: `$hermes-requirements`
-- Intended consumer skill: `$hermes-requirements` for blocker resolution and
-  acceptance; later `$hermes-spec` only after this milestone is Accepted.
+- Intended consumer skill: `$hermes-spec`.
 - Artifact path: `docs/milestones/0003-finance-evidence-provider-contract.md`
-- Status: Draft.
+- Status: Accepted.
 - Settled decisions: live provider payloads must pass through provider-neutral
   evidence adapters before report generation; adapter output must be canonical
   fixture data plus explicit diagnostics; deterministic finance functions
-  remain the report source of truth; `0003` must not modify or depend on the
-  `0002` runtime service boundary.
-- Unresolved blockers: `0002` is Accepted but not implemented in the current
-  repo state, so `0003` is not ready for implementation. The normal next gate
-  is `0002` reaching Verified, unless a later `$hermes-requirements` pass
-  explicitly revises the sequencing dependency. User decision on 2026-06-29:
-  keep this blocker in place.
+  remain the report source of truth; this milestone remains finance-layer only
+  and must not add, remove, or change `hermes_runtime` endpoints; the prior
+  runtime sequencing blocker is resolved because
+  `docs/specs/0003-runtime-service-boundary.md` is Verified.
+- Unresolved blockers: none.
 - Required next reads: `AGENTS.md`, `README.md`, `docs/PRODUCT.md`,
   `docs/CONTEXT.md`, `docs/WORKFLOWS.md`,
   `docs/milestones/0002-runtime-service-boundary.md`, this milestone, and
@@ -366,9 +355,8 @@ Deferred to later specs:
 - Verification expectations: static recorded-provider fixtures, adapter unit
   tests, integration-style tests through both finance public APIs, the existing
   finance regression baseline, `uv run pytest`, and `uv run ruff check .`.
-- Remaining open questions: first live provider and live smoke-test policy are
-  deferred to `0004`; runtime consumption of adapter-produced evidence remains
-  a later milestone decision.
-- Agent routing log: inherited from the earlier formalization pass; a fresh
-  `$hermes-requirements` acceptance run must record current gates before this
-  milestone can become Accepted.
+- Remaining open questions: runtime consumption of adapter-produced evidence
+  remains a later milestone decision.
+- Agent routing log: `$hermes-requirements` used `spec-planner`,
+  `spec-griller`, `$grill-with-docs`, and `doc-curator` during the 2026-06-29
+  acceptance run.
