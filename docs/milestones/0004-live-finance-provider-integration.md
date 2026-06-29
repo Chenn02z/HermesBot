@@ -10,6 +10,11 @@ Split from the consolidated roadmap requirements handoff, which has been
 decomposed and removed. This file preserves future milestone direction only; it
 does not authorize implementation.
 
+Yahoo Finance was reviewed as a candidate on 2026-06-29 and is not accepted as
+the first live provider target for this milestone. Yahoo's current terms
+prohibit automated means of accessing or collecting data without prior written
+permission, which makes it a poor default provider contract for this project.
+
 ## Goal
 
 Integrate the first live finance provider after provider-neutral contracts are
@@ -35,7 +40,8 @@ accepted and verified.
 ## Acceptance Criteria Candidates
 
 - Provider choice and required credentials are explicit.
-- Live behavior has fixture-backed tests plus optional live smoke tests.
+- Live behavior has fixture-backed tests plus optional local-only live smoke
+  tests gated behind explicit credentials.
 - Rate limits and provider errors are handled deterministically.
 - No provider payload bypasses validation.
 - Research-only wording remains enforced.
@@ -49,19 +55,32 @@ accepted and verified.
 
 ## Open Questions
 
-- Which provider should be first?
-- What live smoke-test policy is acceptable for a personal project without
-  making CI depend on paid or rate-limited APIs?
+Blocking for acceptance:
+
+- Which licensed or permission-compatible provider should be first?
+
+Settled:
+
+- Yahoo Finance is not accepted as the first provider target unless a later
+  requirements pass documents a permission-compatible access path.
+- Live smoke tests, when introduced, must be optional local-only tests gated
+  behind explicit credentials and excluded from the normal `uv run pytest`
+  baseline.
 
 ## Handoff
 
 - Producer skill: `$hermes-requirements`
-- Intended consumer skill: `$hermes-spec`
+- Intended consumer skill: `$hermes-requirements` for blocker resolution and
+  acceptance; later `$hermes-spec` only after this milestone is Accepted.
 - Artifact path: `docs/milestones/0004-live-finance-provider-integration.md`
 - Status: Draft.
 - Settled decisions: live provider work follows adapter contracts and preserves
-  deterministic finance truth.
-- Unresolved blockers: provider choice and smoke-test policy.
+  deterministic finance truth; Yahoo Finance is not accepted as the first
+  provider target under current terms; live smoke tests must be optional,
+  local-only, credential-gated, and excluded from normal tests.
+- Unresolved blockers: first provider choice.
 - Required next reads: `docs/milestones/0003-finance-evidence-provider-contract.md`
   and verified finance specs.
-- Agent routing log: inherited from the roadmap split requirements pass.
+- Agent routing log: inherited from the roadmap split requirements pass; a
+  fresh `$hermes-requirements` acceptance run must record current gates before
+  this milestone can become Accepted.

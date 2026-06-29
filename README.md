@@ -89,7 +89,7 @@ Sentiment    Support/Res   Margin Safety    Risks      │
   provider-neutral evidence adapter contract.
 - `docs/milestones/0004-live-finance-provider-integration.md`: Draft first
   live finance provider integration.
-- `docs/milestones/0005-openrouter-model-routing-boundary.md`: Draft
+- `docs/milestones/0005-openrouter-model-routing-boundary.md`: Accepted
   OpenRouter model gateway boundary.
 - `docs/milestones/0006-hermes-agent-runtime-integration.md`: Draft Hermes
   Agent runtime integration.

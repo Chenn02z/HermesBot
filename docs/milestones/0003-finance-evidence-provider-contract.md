@@ -8,14 +8,15 @@ This draft is intentionally not Accepted yet. `0003` is sequenced after
 `docs/milestones/0002-runtime-service-boundary.md`, and `0002` is Accepted but
 not implemented in the current repo state. Implementation of this milestone
 must not begin until `0002` reaches Verified and `0003` is explicitly moved to
-Accepted, unless a later `$hermes-spec` pass revises this sequencing
+Accepted, unless a later `$hermes-requirements` pass revises this sequencing
 dependency.
 
 ## Source
 
 Split from the consolidated roadmap requirements handoff, which has been
-decomposed and removed. This `$hermes-spec` pass turns the requirements-level
-draft into a milestone contract while preserving the dependency on `0002`.
+decomposed and removed. An earlier formalization pass turned the
+requirements-level draft into a milestone contract while preserving the
+dependency on `0002`.
 
 ## Goal
 
@@ -273,7 +274,7 @@ touch Telegram, persistence, scheduling, deployment, or brokerage systems.
 
 - The milestone remains Draft until the `0002` runtime service boundary reaches
   Verified and this file is explicitly moved to Accepted by a later
-  `$hermes-spec` pass, unless that later pass revises the sequencing
+  `$hermes-requirements` pass, unless that later pass revises the sequencing
   dependency.
 - Adapter tests map recorded quote, range, market context, and news payloads
   into a canonical `0001` fixture accepted by the daily market brief function.
@@ -321,7 +322,9 @@ Blocking for acceptance:
 
 - `0002` is Accepted but not implemented in the current repo state. `0003`
   should not be Accepted until that dependency is Verified, unless a later
-  `$hermes-spec` pass explicitly revises this sequencing dependency.
+  `$hermes-requirements` pass explicitly revises this sequencing dependency.
+- User decision on 2026-06-29: keep this dependency blocked; do not waive the
+  `0002` Verified prerequisite for now.
 
 Deferred to later specs:
 
@@ -334,9 +337,9 @@ Deferred to later specs:
 
 ## Handoff
 
-- Producer skill: `$hermes-spec`
-- Intended consumer skill: `$hermes-spec` after `0002` verification; later
-  `$hermes-dev-loop` only after this milestone is Accepted.
+- Producer skill: `$hermes-requirements`
+- Intended consumer skill: `$hermes-requirements` for blocker resolution and
+  acceptance; later `$hermes-spec` only after this milestone is Accepted.
 - Artifact path: `docs/milestones/0003-finance-evidence-provider-contract.md`
 - Status: Draft.
 - Settled decisions: live provider payloads must pass through provider-neutral
@@ -346,8 +349,9 @@ Deferred to later specs:
   `0002` runtime service boundary.
 - Unresolved blockers: `0002` is Accepted but not implemented in the current
   repo state, so `0003` is not ready for implementation. The normal next gate
-  is `0002` reaching Verified, unless a later `$hermes-spec` pass explicitly
-  revises the sequencing dependency.
+  is `0002` reaching Verified, unless a later `$hermes-requirements` pass
+  explicitly revises the sequencing dependency. User decision on 2026-06-29:
+  keep this blocker in place.
 - Required next reads: `AGENTS.md`, `README.md`, `docs/PRODUCT.md`,
   `docs/CONTEXT.md`, `docs/WORKFLOWS.md`,
   `docs/milestones/0002-runtime-service-boundary.md`, this milestone, and
@@ -365,6 +369,6 @@ Deferred to later specs:
 - Remaining open questions: first live provider and live smoke-test policy are
   deferred to `0004`; runtime consumption of adapter-produced evidence remains
   a later milestone decision.
-- Agent routing log: `spec-planner` used; `spec-griller` used; focused
-  `$grill-with-docs` check performed by the main agent against the canonical
-  docs and current repo shape.
+- Agent routing log: inherited from the earlier formalization pass; a fresh
+  `$hermes-requirements` acceptance run must record current gates before this
+  milestone can become Accepted.

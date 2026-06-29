@@ -24,10 +24,12 @@ This document defines where durable project information belongs.
 ## Spec And Milestone Docs
 
 Use `docs/specs/` for executable contracts with goal, scope, contracts, failure
-modes, acceptance criteria, verification, and open questions.
+modes, acceptance criteria, verification, and open questions. `$hermes-spec`
+creates or updates these contracts from Accepted milestones.
 
 Use `docs/milestones/` for larger deliverable slices that may produce or group
-multiple specs.
+multiple specs. `$hermes-requirements` owns milestone drafting, blocker
+resolution, and milestone acceptance.
 
 Use `docs/techdebt/` for durable candidate tickets that come out of accepted
 architecture or workflow reviews. Keep one markdown file per candidate. These

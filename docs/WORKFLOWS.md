@@ -45,12 +45,13 @@ Use the full workflow for non-trivial product, code, workflow, or context
 changes:
 
 1. Gather requirements.
-2. Draft or update a spec.
-3. Grill the spec for ambiguity and missing failure modes.
-4. Mark the spec Accepted before implementation.
-5. Implement only what the spec requires.
-6. Verify and review against the spec.
-7. Update docs/spec status when decisions settle, using `$hermes-context` for
+2. Draft or update an Accepted milestone when the work is milestone-sized.
+3. Create or update specs from Accepted milestones.
+4. Grill the spec for ambiguity and missing failure modes.
+5. Mark the spec Accepted before implementation.
+6. Implement only what the spec requires.
+7. Verify and review against the spec.
+8. Update docs/spec status when decisions settle, using `$hermes-context` for
    any settled context change.
 
 Small documentation or cleanup tasks may skip a formal spec when the user makes
@@ -59,29 +60,55 @@ that explicit or when the change is obviously local and reversible.
 ## `$hermes-requirements`
 
 Use `$hermes-requirements` for requirement gathering, product shaping,
-milestone direction, and deciding whether a spec is needed.
+milestone direction, accepting milestone contracts, and deciding whether a spec
+is needed.
 
-It produces a pre-spec requirements packet containing:
+It produces requirements packets and Accepted milestone contracts containing:
 
 - resolved workflow
 - proposed spec name/path
-- proposed milestone name/path, when relevant
+- milestone path, when relevant
+- milestone status, when relevant
 - scope boundary
 - scenarios
 - acceptance criteria candidates
 - settled decisions
 - blocking questions
 
-It should not write full specs or milestone contracts. It should hand formal
-spec or milestone work to `$hermes-spec`.
+It should not write full specs under `docs/specs/`. For milestone work, it owns
+writing or updating `docs/milestones/` contracts through `doc-curator` and may
+mark them `Accepted` only after acceptance-blocking questions have been answered
+by repo context or by the user.
+
+It must not close a milestone acceptance run with unresolved blocking questions.
+If blockers remain unanswered, the output status is Draft or blocked, not
+Accepted.
+
+Blocking questions are questions whose answer is required before milestone
+acceptance. Deferred questions may remain only when they are explicitly listed
+as non-blocking and assigned to child specs or later milestones.
 
 ## `$hermes-spec`
 
-Use `$hermes-spec` to turn a requirements packet into formal specs, milestone
-contracts, acceptance criteria, and spec status.
+Use `$hermes-spec` to turn Accepted milestones into formal implementation specs
+under `docs/specs/`.
 
-It consumes `$hermes-requirements` handoffs and writes or updates contracts
-under `docs/specs/` and `docs/milestones/`.
+It consumes `$hermes-requirements` handoffs only when the artifact is an
+Accepted milestone contract with no unresolved blocking questions. It rejects
+Draft, blocked, missing, or non-Accepted milestones and sends milestone
+drafting, acceptance, or blocker resolution back to `$hermes-requirements`.
+
+It writes or updates contracts under `docs/specs/` only. It does not create,
+accept, revise, or status-update `docs/milestones/` contracts.
+
+Existing Draft milestones under `docs/milestones/` must be reopened through
+`$hermes-requirements` for blocker resolution and promotion to Accepted before
+`$hermes-spec` consumes them. `$hermes-spec` must not promote Draft milestones.
+
+When an Accepted milestone can produce multiple specs, `$hermes-spec` must first
+name the child spec paths and whether each child spec is expected to remain
+Draft or become Accepted after grilling. Milestone acceptance does not
+automatically accept child specs.
 
 ## Spec Status Contract
 
@@ -91,7 +118,8 @@ language.
 Status values:
 
 - `Draft`: requirements are still being shaped.
-- `Accepted`: implementation can start.
+- `Accepted`: for specs, implementation can start; for milestones, spec
+  authoring can start but implementation is not authorized.
 - `Implemented`: code/docs have been changed but final verification may remain.
 - `Verified`: acceptance criteria have passed or documented exceptions exist.
 
@@ -99,9 +127,9 @@ Header status, downstream handoff status, and skill output status must agree.
 Do not leave a spec header at `Implemented` while a handoff still says
 `Accepted`, or vice versa.
 
-When a spec or milestone is ready for implementation, `$hermes-spec` should
-leave an explicit handoff for `$hermes-dev-loop` using the shared handoff
-artifact interface.
+When a spec is ready for implementation, `$hermes-spec` should leave an
+explicit handoff for `$hermes-dev-loop` using the shared handoff artifact
+interface.
 
 ## `$hermes-dev-loop`
 
@@ -117,10 +145,11 @@ The dev loop should:
 - confirm spec gaps before implementation
 - use targeted verification
 - compare the diff against the spec
-- update the spec or milestone status so it matches the current implementation
-  state
+- update the spec status so it matches the current implementation state
 - leave follow-up handoffs for `$hermes-context` or `$hermes-spec` when the work
   settles terminology, changes scope, or exposes a spec gap
+- leave follow-up handoffs for `$hermes-requirements` when milestone roll-up
+  status needs to change after child specs are verified
 
 Do not expand scope without updating the spec first.
 

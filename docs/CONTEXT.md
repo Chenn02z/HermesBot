@@ -26,6 +26,10 @@ and workflow context, not implementation details.
 - `requirements packet`: the pre-spec output of `hermes-requirements`,
   containing the resolved workflow, proposed spec name/path, scope boundary,
   scenarios, acceptance criteria candidates, and blocking questions.
+- `Accepted milestone`: a milestone contract under `docs/milestones/` that
+  `hermes-requirements` has moved to `Accepted` after resolving all blocking
+  questions. It is eligible input for `hermes-spec`; it does not authorize
+  implementation without an Accepted child spec.
 - `handoff artifact`: the explicit output one workflow skill leaves for the
   next skill to consume. It names the producer skill, intended consumer skill,
   artifact path or packet contents, status, settled decisions, unresolved
@@ -48,7 +52,8 @@ and workflow context, not implementation details.
 - `finance agent foundation`: the first finance-domain milestone, defined by
   and verified in `docs/milestones/0001-finance-agent-foundation.md`.
 - `requirement gathering`: the workflow that turns vague intent into a
-  requirements packet for spec, milestone, or context work.
+  requirements packet or Accepted milestone for spec, milestone, or context
+  work.
 - `spec grilling`: adversarial review of a spec before implementation.
 - `dev loop`: the implementation workflow from accepted spec to verified,
   reviewed diff.
@@ -83,16 +88,20 @@ task, subject to system/tool constraints and file ownership rules.
 
 ## Workflow Boundaries
 
-- Requirements work can identify product/context changes, but should not
-  implement code, write a full spec, or directly own context maintenance. It
-  may write or update requirements handoff artifacts and proposed milestone
-  handoffs only. It should produce a requirements packet as a handoff artifact
-  for spec work and hand settled context changes to `hermes-context`.
-- Spec work can define contracts and acceptance criteria, but should not hide
-  implementation details as settled architecture. It consumes requirements
-  packets or milestone direction and writes or updates `docs/specs/` and
-  `docs/milestones/` contracts. It leaves specs or milestone contracts as
-  handoff artifacts for `hermes-dev-loop` or `hermes-context`.
+- Requirements work can identify product/context changes, write or update
+  milestone contracts, and accept milestone direction after blockers are
+  resolved. It should not implement code, write a full spec under `docs/specs/`,
+  or directly own context maintenance. It produces requirements packets or
+  Accepted milestone handoffs for spec work and hands settled context changes to
+  `hermes-context`.
+- Spec work can define executable implementation contracts and acceptance
+  criteria under `docs/specs/`, but should not hide implementation details as
+  settled architecture. It consumes only Accepted milestone contracts with no
+  unresolved blocking questions. It does not create, accept, revise, or
+  status-update `docs/milestones/` contracts. It leaves spec handoff artifacts
+  for `hermes-dev-loop` or `hermes-context`.
+- Existing Draft milestones must be reopened through `hermes-requirements` for
+  blocker resolution and promotion before `hermes-spec` consumes them.
 - Development work starts from an Accepted spec unless the user explicitly marks
   the task as a small exception. It consumes an Accepted spec handoff and
   reports changed files, verification results, review findings, and any follow-up

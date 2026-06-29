@@ -40,12 +40,13 @@ are capacity decisions.
 Any non-trivial work must have a routing trace. This includes:
 
 1. Gather requirements.
-2. Draft or update a spec.
-3. Review the spec for ambiguity and failure modes.
-4. Mark the spec Accepted before implementation.
-5. Implement only what the spec requires.
-6. Verify against the spec.
-7. Update docs/context when decisions settle.
+2. Draft or update an Accepted milestone when the work is milestone-sized.
+3. Create or update a spec from an Accepted milestone.
+4. Review the spec for ambiguity and failure modes.
+5. Mark the spec Accepted before implementation.
+6. Implement only what the spec requires.
+7. Verify against the spec.
+8. Update docs/context when decisions settle.
 
 Small local documentation or cleanup tasks may skip a formal spec only when the
 user explicitly allows it or the change is obviously reversible.
@@ -63,8 +64,8 @@ user explicitly allows it or the change is obviously reversible.
   
  Silent manual substitution for a required subagent is a workflow violation.
 
-- `$hermes-requirements`: gather requirements and produce a pre-spec packet.
-- `$hermes-spec`: turn requirements into formal specs or milestone contracts.
+- `$hermes-requirements`: gather requirements and produce Accepted milestones.
+- `$hermes-spec`: turn Accepted milestones into formal specs.
 - `$hermes-dev-loop`: implement from an Accepted spec through verification.
 - `$hermes-context`: keep AGENTS, docs, specs, skills, and agents aligned.
 - `$grill-with-docs`: adversarial review for ambiguity, scope creep, and weak
