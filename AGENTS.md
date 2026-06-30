@@ -48,7 +48,8 @@ do not edit files (the implementer exists for that), and do not run verification
 commands (the test-runner exists for that). The main agent owns judgment,
 delegation, reconciliation, reporting, and user interaction only.
 
-Any non-trivial work must have a routing trace. This includes:
+Any non-trivial work must produce a trace via `$codex-agent-tracer`
+under `.agent-trace/<workflow-id>/`. The full routing trace includes:
 
 1. Gather requirements.
 2. Draft or update an Accepted milestone when the work is milestone-sized.
@@ -83,6 +84,9 @@ If a selected skill says to use a subagent, the main agent must either:
  3. explicitly explain why the subagent is not applicable before proceeding.
  
 Silent manual substitution for a required subagent is a workflow violation.
+
+All project workflow skills produce a `.agent-trace/` folder. The trace
+is the canonical evidence log backing the handoff artifact.
 
 - `$hermes-requirements`: gather requirements and produce Accepted milestones.
 - `$hermes-spec`: turn Accepted milestones into formal specs.

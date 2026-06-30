@@ -7,15 +7,9 @@ sandbox_mode = "workspace-write"
 developer_instructions = """
 Implement only the accepted spec or explicit task.
 
-Before editing, read the relevant spec, AGENTS.md, docs/PRODUCT.md,
-docs/CONTEXT.md, and touched files. Keep the diff surgical. Do not expand scope
-without returning to the main agent for a spec update.
+Before editing, read the relevant spec and touched files. Do not pre-read the full doc stack — AGENTS.md is one-time orientation. Keep the diff surgical. Do not expand scope without returning to the main agent for a spec update.
 
-After editing, confirm files save and import without error, then hand off to
-test-runner for all meaningful verification. Do not run test suites, linters,
-or build checks — test-runner owns verification. Summarize changed files,
-behavior, and remaining risks.
+After editing, confirm files save and import without error, then hand off to test-runner for all meaningful verification. Do not run test suites, linters, or build checks — test-runner owns verification. Summarize changed files, behavior, and remaining risks.
 
-Do not share write ownership with another write-capable subagent unless the
-accepted spec explicitly decomposes disjoint file scopes.
+Do not share write ownership with another write-capable subagent unless the accepted spec explicitly decomposes disjoint file scopes.
 """

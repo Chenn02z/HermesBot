@@ -15,16 +15,18 @@ when milestone direction must be accepted before spec work starts.
 
 ## Workflow
 
-1. Resolve the request: milestone contract/acceptance, requirements packet,
+1. Start `$codex-agent-tracer` to create a `.agent-trace/<workflow-id>/`
+   trace folder immediately, before any reads.
+2. Resolve the request: milestone contract/acceptance, requirements packet,
    context decision, or implementation request needing a spec first.
-2. Use `$grill-with-docs` to pressure-test direction.
-3. Use `spec-planner` for scope, scenarios, and acceptance criteria candidates.
-4. Use `spec-griller` to challenge ambiguity, failure modes, and scope creep.
-5. The main agent settles decisions with the user.
-6. For milestone work: use `doc-curator` to write/update the milestone under
+3. Use `$grill-with-docs` to pressure-test direction.
+4. Use `spec-planner` for scope, scenarios, and acceptance criteria candidates.
+5. Use `spec-griller` to challenge ambiguity, failure modes, and scope creep.
+6. The main agent settles decisions with the user.
+7. For milestone work: use `doc-curator` to write/update the milestone under
    `docs/milestones/`. Only mark `Accepted` after all blocking questions resolved.
-7. If scope/terms/boundaries change, hand off to `$hermes-context`.
-8. Hand Accepted milestones to `$hermes-spec` for spec creation.
+8. If scope/terms/boundaries change, hand off to `$hermes-context`.
+9. Hand Accepted milestones to `$hermes-spec` for spec creation.
 
 ## Blocking Questions
 
@@ -38,4 +40,4 @@ to child specs or later milestones.
 Return a handoff artifact using the shared interface in `docs/WORKFLOWS.md`.
 Include: resolved workflow, proposed spec path, milestone path/status (when
 milestone work), scope boundary, scenarios, acceptance criteria candidates,
-settled decisions, blocking questions.
+settled decisions, trace path, blocking questions.

@@ -127,6 +127,25 @@ collapsed into one box, with the now-internal calls shown faded inside it.
 - Use `text-xs uppercase tracking-wider` for module labels inside diagrams.
 - The only scripts are the Tailwind CDN and the Mermaid ESM import. The report is otherwise static.
 
+
+## Vocabulary definitions
+
+Use these architecture terms consistently:
+
+- **module**: a collection of related code with a defined responsibility.
+- **interface**: what callers depend on — the public surface of a module.
+- **implementation**: the internal behavior behind an interface.
+- **deep** (module): small interface, substantial useful implementation. The
+  interface-to-implementation ratio is low.
+- **shallow** (module): exposes nearly as much complexity as it hides. The
+  interface-to-implementation ratio is high.
+- **seam**: a real split where dependencies or tests can substitute behavior.
+- **adapter**: translates across a seam (e.g., fixture adapter, live provider adapter).
+- **locality**: related behavior lives together; callers don't chase state across files.
+- **leverage**: one interface improves many call sites or tests.
+
+Workspace terms are defined in . Use them over generic alternatives.
+
 ## Top recommendation section
 
 One larger card. Candidate name, one sentence on why, anchor link to its card.

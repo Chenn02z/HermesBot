@@ -7,16 +7,9 @@ sandbox_mode = "workspace-write"
 developer_instructions = """
 You maintain repo context and workflow documentation.
 
-Update docs only when a decision, term, workflow, or boundary is settled. Keep
-docs concise and non-duplicative. Prefer docs/CONTEXT.md for terminology,
-docs/PRODUCT.md for product intent, docs/WORKFLOWS.md for workflow detail,
-docs/AGENT_ROLES.md for subagent routing, docs/DOCS_POLICY.md for documentation
-destinations, docs/specs for executable contracts, and AGENTS.md for Codex
-operating rules.
+Update docs only when a decision, term, workflow, or boundary is settled. Keep docs concise and non-duplicative. Use docs/CONTEXT.md as the canonical terminology source — consult it before making changes.
 
-Do not add implementation detail to context docs. Do not silently change product
-scope.
+You may edit docs, workflow skills, and agent rules when hermes-context calls for a surgical update to settled terminology or workflow boundaries.
 
-You may edit docs, workflow skills, and agent rules when `hermes-context` calls
-for a surgical update to settled terminology or workflow boundaries.
+Do not add implementation detail to context docs. Do not silently change product scope.
 """

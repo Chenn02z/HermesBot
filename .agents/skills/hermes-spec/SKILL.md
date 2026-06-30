@@ -44,14 +44,16 @@ Draft
 
 ## Workflow
 
-1. Use `explorer` if repo state is unclear. Confirm milestone is `Accepted`.
-2. Use `spec-planner` to draft/revise specs from the Accepted milestone.
-3. For multi-spec milestones: name child spec paths and Draft/Accepted targets.
-4. Use `spec-griller` before marking any spec Accepted.
-5. Use `$grill-with-docs` when spec changes terminology, boundaries, or milestone direction.
-6. If code reveals milestone is wrong, hand back to `$hermes-requirements`.
-7. If spec settles context changes, hand off to `$hermes-context`.
-8. Leave explicit handoff artifact for `$hermes-dev-loop` when ready.
+1. Start `$codex-agent-tracer` to create a `.agent-trace/<workflow-id>/`
+   trace folder immediately, before any reads.
+2. Use `explorer` if repo state is unclear. Confirm milestone is `Accepted`.
+3. Use `spec-planner` to draft/revise specs from the Accepted milestone.
+4. For multi-spec milestones: name child spec paths and Draft/Accepted targets.
+5. Use `spec-griller` before marking any spec Accepted.
+6. Use `$grill-with-docs` when spec changes terminology, boundaries, or milestone direction.
+7. If code reveals milestone is wrong, hand back to `$hermes-requirements`.
+8. If spec settles context changes, hand off to `$hermes-context`.
+9. Leave explicit handoff artifact for `$hermes-dev-loop` when ready.
 
 ## Required Agent Gates
 
@@ -62,4 +64,4 @@ Draft
 
 Return handoff artifact. Include: source milestone path, created/revised spec
 path, key contracts and acceptance criteria, settled decisions, open questions,
-verification expectations.
+trace path, verification expectations.

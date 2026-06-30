@@ -22,20 +22,21 @@ against the repo's documented boundaries.
 2. `README.md`
 3. `docs/PRODUCT.md`
 4. `docs/CONTEXT.md`
-5. Relevant reference docs such as `docs/WORKFLOWS.md`,
-   `docs/AGENT_ROLES.md`, or `docs/DOCS_POLICY.md`
+5. `docs/WORKFLOWS.md`
 6. Relevant files under `docs/specs/` or `docs/milestones/`
 7. Touched code or skill files, if any
 
 ## Workflow
 
-1. Resolve the user's actual goal in workspace terms.
-2. Read the repo before asking anything the repo can answer.
-3. Challenge fuzzy, overloaded, or conflicting terms immediately.
-4. Use concrete developer workflows to force boundary decisions.
-5. Separate settled decisions from open questions.
-6. Recommend the smallest doc/spec update that removes ambiguity.
-7. Create an ADR only when the decision is hard to reverse, surprising, and a
+1. Start `$codex-agent-tracer` to create a `.agent-trace/<workflow-id>/`
+   trace folder immediately, before any reads.
+2. Resolve the user's actual goal in workspace terms.
+3. Read the repo before asking anything the repo can answer.
+4. Challenge fuzzy, overloaded, or conflicting terms immediately.
+5. Use concrete developer workflows to force boundary decisions.
+6. Separate settled decisions from open questions.
+7. Recommend the smallest doc/spec update that removes ambiguity.
+8. Create an ADR only when the decision is hard to reverse, surprising, and a
    real trade-off.
 
 ## Review Targets
@@ -51,17 +52,10 @@ against the repo's documented boundaries.
 
 ## Workspace Terminology
 
-Prefer the repo's language over generic alternatives:
-
-- `HermesBot` for this repository's personal finance research product.
-- `workspace` for this repo and its docs, skills, specs, and agents.
-- `main agent` for the active Codex thread that owns final judgment.
-- `subagent` for delegated role/model workers.
-- `skill` for reusable workflows under `.agents/skills/`.
-- `spec` for executable contracts under `docs/specs/`.
-- `milestone` for larger deliverable slices.
-- `spec grilling` for adversarial spec review.
-- `dev loop` for accepted-spec implementation and verification.
+Use terminology from `docs/CONTEXT.md` (the canonical source). Prefer repo terms
+over generic alternatives. Key terms defined there include:
+`HermesBot`, `workspace`, `main agent`, `subagent`, `skill`, `spec`,
+`milestone`, `spec grilling`, `dev loop`, and others.
 
 ## Output Discipline
 
@@ -69,3 +63,4 @@ Prefer the repo's language over generic alternatives:
 - Keep findings grounded in file references where possible.
 - Do not write implementation details into `docs/CONTEXT.md`.
 - Do not batch unrelated terminology changes.
+- Include the trace path in the output.

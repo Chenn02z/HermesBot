@@ -12,7 +12,7 @@ locality, leverage, and testability before implementation work expands.
 
 This skill is for architecture review, not immediate implementation. It should
 produce review artifacts the developer can inspect and then pressure-test with
-`$grill-with-docs` before any spec or code work expands.
+`\-with-docs` before any spec or code work expands.
 
 The named project agents in this workflow are authorized subagents for this
 skill's scoped task. The main agent still owns judgment, user interaction,
@@ -20,42 +20,17 @@ reconciliation, and final reporting.
 
 ## Vocabulary
 
-Use these architecture terms consistently: `module`, `interface`,
-`implementation`, `deep`, `shallow`, `seam`, `adapter`, `locality`, and
-`leverage`.
-
-Definitions: a deep module has a small interface and substantial useful
-implementation; a shallow module exposes nearly as much complexity as it hides;
-a seam is a real split where dependencies or tests can substitute behavior; an
-adapter translates across a seam; locality keeps related behavior together;
-leverage means one interface improves many call sites or tests.
-
-Use workspace language from `docs/CONTEXT.md` and the current specs:
-workspace, developer, main agent, subagent, skill, agent preset, requirements
-packet, handoff artifact, spec, milestone, finance brief, watchlist,
-research-only pullback zone, entry-zone strategy, and finance agent
-foundation.
+Use architecture terms in [HTML-REPORT.md](HTML-REPORT.md) (module, interface,
+implementation, deep, shallow, seam, adapter, locality, leverage) and workspace
+language from `docs/CONTEXT.md`. See those files for definitions.
 
 ## Process
 
 ### 1. Read context
 
-Read first: `README.md`, `AGENTS.md`, `docs/PRODUCT.md`, `docs/CONTEXT.md`,
-`docs/WORKFLOWS.md`, `docs/AGENT_ROLES.md`, `docs/DOCS_POLICY.md`, relevant
-files under `docs/specs/`, relevant files under `docs/milestones/`, and
-existing `docs/techdebt/` tickets if present. Read existing `docs/adr/`
-entries if present.
-
-Then inspect the repo area that matches the architecture review target. Current
-Workspace areas include:
-
-- workflow docs and handoff contracts under `docs/`
-- reusable workflow skills under `.agents/skills/`
-- project agent presets under `.codex/agents/`
-- finance implementation code under `src/hermes_finance/`
-- fixture-backed verification under `tests/finance/` and `tests/fixtures/`
-
-Use `explorer` for the read-only pass when delegated exploration is helpful.
+Read `docs/CONTEXT.md` for terminology. Read only the docs, specs, and
+milestones relevant to the architecture review target. Use `explorer` for
+the read-only pass when delegated exploration is helpful.
 
 ### 2. Explore code
 
@@ -77,63 +52,13 @@ Look for friction:
 Apply the deletion test to suspected shallow modules: if deleting the module
 concentrates behavior and simplifies tests, it is probably shallow.
 
-Project-specific examples that fit this review:
-
-- Spec status logic leaks across multiple skills instead of one shared workflow
-  module or contract.
-- Finance brief rendering mixes fixture validation, deterministic calculation,
-  and markdown narration in a way that makes focused tests awkward.
-- A skill duplicates terminology that should live in `docs/CONTEXT.md` or
-  `docs/WORKFLOWS.md`.
-- A seam between docs and implementation exists only as prose, with no focused
-  spec or test anchor.
-- The proposed `0002` entry-zone strategy would force callers to know too much
-  about `0001` report internals instead of building on a narrower interface.
-
 ### 3. Present candidates
 
-Write a self-contained HTML file to the OS temp directory so bulky generated
-reports do not land in the repo. Durable follow-up tickets live in
-`docs/techdebt/` and must be self-contained because temp links may expire.
-Resolve the temp dir from `$TMPDIR`, falling back to `/tmp` or `%TEMP%`, and write to
-`<tmpdir>/architecture-review-<timestamp>.html`. Open it for the
-user if allowed by the current environment and report the absolute path.
-
-Use Tailwind via CDN and Mermaid via CDN. Mix Mermaid with hand-built CSS/SVG.
-Every candidate must have a before/after visualization.
-
-Each candidate card includes:
-
-- Files and modules involved
-- Problem and solution, without implementing yet
-- Benefits in locality, leverage, and tests
-- Before/after diagram
-- Recommendation strength: `Strong`, `Worth exploring`, or `Speculative`
-- Relevant spec, milestone, or doc anchor, when one applies
-
-End with a top recommendation and why it should be handled first.
-
-See [HTML-REPORT.md](HTML-REPORT.md) for the scaffold, diagram patterns, and
-styling guidance.
-
-Use `doc-curator` to create or update markdown handoff tickets in the repo
-under `docs/techdebt/`, one file per candidate, or record an approved manual
-fallback in the agent routing log. Use [TECHDEBT-TICKET.md](TECHDEBT-TICKET.md)
-as the template and name files `YYYY-MM-DD-<candidate-slug>.md`. For example, a
-report with four architecture suggestions should produce four separate markdown
-files, not one combined document. Each ticket should include enough copied
-context to stand alone, record the temp report path when available, capture the
-current code snapshot, include before/after Mermaid diagrams, and state
-acceptance criteria for implementation. Default new tickets to `proposed`
-unless the review or follow-up workflow has already settled a different status
-under `docs/DOCS_POLICY.md`.
-
-Ticket examples that fit the current workspace:
-
-- `2026-06-28-deepen-finance-brief-pipeline.md`
-- `2026-06-28-centralize-spec-status-rules.md`
-- `2026-06-28-define-architecture-candidate-destination.md`
-- `2026-06-28-shrink-skill-handoff-surface.md`
+Write a self-contained HTML report: see [HTML-REPORT.md](HTML-REPORT.md) for
+scaffold, patterns, and style. Write to `<tmpdir>/architecture-review-<timestamp>.html`.
+Create durable follow-up tickets under `docs/techdebt/`: see
+[TECHDEBT-TICKET.md](TECHDEBT-TICKET.md) for the template and naming convention.
+One ticket per candidate, each self-contained. Default new tickets to `proposed`.
 
 Do not implement or finalize a new interface during the report. After the file
 is written, ask: "Which candidate do you want to grill first?"
@@ -151,9 +76,9 @@ During the grilling loop:
   terminology, workflow boundaries, or documentation ownership.
 - Create an ADR only for hard-to-reverse, surprising trade-offs.
 - If the candidate changes product requirements or executable behavior, route to
-  `$hermes-requirements` or `$hermes-spec` before implementation.
+  `\-requirements` or `\-spec` before implementation.
 - If the candidate can proceed from an Accepted spec, route implementation to
-  `$hermes-dev-loop` after the design is settled.
+  `\-dev-loop` after the design is settled.
 
 The final output of the grilling loop should be either a scoped implementation
 plan, a spec update handoff, or a documented reason to reject the refactor.

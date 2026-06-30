@@ -39,6 +39,7 @@ Every non-trivial project workflow handoff must include these shared fields:
 - unresolved blockers
 - docs, specs, or milestones the next skill must read
 - agent routing log
+- trace path
 
 For each required agent gate, the routing log says one of:
 
@@ -46,9 +47,10 @@ For each required agent gate, the routing log says one of:
 - unavailable; manual fallback approved
 - not applicable for this scoped pass
 
-For workflows that use `$codex-agent-tracer`, the `.agent-trace` file is the
-detailed evidence log. The handoff artifact is the canonical summary and must
-include the trace path plus any missing-event risks.
+All project workflow skills produce a trace via `\-agent-tracer`. The
+`.agent-trace/<workflow-id>/` folder is the canonical evidence log. The
+handoff artifact is the canonical summary and must include the trace path plus
+any missing-event risks from the tracer's audit pass.
 
 ## Agent Routing Log
 
@@ -76,6 +78,6 @@ Header status, downstream handoff status, and skill output status must agree.
 Do not leave a spec header at `Implemented` while a handoff still says
 `Accepted`, or vice versa.
 
-When a spec is ready for implementation, `$hermes-spec` should leave an
-explicit handoff for `$hermes-dev-loop` using the shared handoff artifact
+When a spec is ready for implementation, `\-spec` should leave an
+explicit handoff for `\-dev-loop` using the shared handoff artifact
 interface.
