@@ -1,0 +1,63 @@
+{
+  "quotes": {
+    "META": {
+      "symbol": "META",
+      "company_name": "Meta Platforms, Inc.",
+      "current_price": 682.35,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "moving_averages": {
+    "META": {
+      "symbol": "META",
+      "sma_50": 660.0,
+      "sma_200": 575.0,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "momentum": {
+    "META": {
+      "symbol": "META",
+      "rsi_14": 54.2,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "range_52w": {
+    "META": {
+      "symbol": "META",
+      "low": 442.65,
+      "high": 740.91,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "support_resistance": {
+    "META": {
+      "symbol": "META",
+      "support_1": 650.0,
+      "resistance_1": 720.0,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "volatility": {
+    "META": {
+      "symbol": "META",
+      "atr_14": 18.25,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "volume": {
+    "META": {
+      "symbol": "META",
+      "latest_volume": 14500000,
+      "avg_volume_20d": 13200000,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  }
+}

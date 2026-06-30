@@ -1,0 +1,63 @@
+{
+  "market_context": {
+    "SPY": {
+      "symbol": "SPY",
+      "name": "S&P 500 proxy",
+      "price": 650.0,
+      "change_percent": 0.4,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    },
+    "QQQ": {
+      "symbol": "QQQ",
+      "name": "Nasdaq proxy",
+      "price": 580.0,
+      "change_percent": 0.7,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    },
+    "notes": [
+      {
+        "headline": "Market breadth improved into the close",
+        "timestamp": "2026-06-26T15:45:00-04:00",
+        "source": "recorded:demo-provider"
+      }
+    ]
+  },
+  "quotes": {
+    "NVDA": {
+      "symbol": "NVDA",
+      "company_name": "NVIDIA Corporation",
+      "current_price": 171.82,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "ranges": {
+    "NVDA": {
+      "symbol": "NVDA",
+      "recent_low_20d": 165.0,
+      "recent_high_20d": 184.5,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "support_levels": {
+    "NVDA": {
+      "symbol": "NVDA",
+      "price": 166.0,
+      "timestamp": "2026-06-26T16:00:00-04:00",
+      "source": "recorded:demo-provider"
+    }
+  },
+  "news": {
+    "NVDA": [
+      {
+        "headline": "Example headline",
+        "summary": "Short fixture-backed summary.",
+        "timestamp": "2026-06-26T10:00:00-04:00",
+        "source": "recorded:demo-provider"
+      }
+    ]
+  }
+}
