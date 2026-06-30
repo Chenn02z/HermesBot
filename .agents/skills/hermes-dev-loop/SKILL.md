@@ -6,29 +6,34 @@ description: Runs the specs-driven implementation loop for product work. Use whe
 # Dev Loop
 
 Use this skill after a spec is Accepted, or when the user explicitly marks a
-small task as a spec exception. It consumes the handoff artifact from
-`$hermes-spec`, especially the accepted spec path, key contracts, acceptance
-criteria, verification expectations, and remaining blockers.
+small task as a spec exception.
 
-The named project agents in this workflow are authorized subagents for this
-skill's scoped task. The main agent still owns judgment, user interaction,
-reconciliation, and final reporting.
+## Prerequisites
+
+Read these before delegating any work:
+
+1. The accepted spec under `docs/specs/`.
+2. `docs/WORKFLOWS.md` (handoff interface and spec status contract only).
+
+Do not pre-read `AGENTS.md`, `docs/PRODUCT.md`, or `docs/CONTEXT.md` — those
+are one-time orientation, not per-invocation reads.
 
 ## Workflow
 
-1. Read the accepted spec, `AGENTS.md`, `docs/PRODUCT.md`, and
-   `docs/CONTEXT.md`.
-2. Use `$codex-agent-tracer` to start a `.agent-trace/<workflow-id>/`
-   trace folder before exploration. Keep it current through delegation, edits,
-   commands, verification, review, duplicated-work findings, and handoff.
-3. Use `explorer` to inspect relevant files and current patterns.
-4. Ask the main agent to confirm any spec gap before implementation.
-5. Use one `implementer` at a time for write-heavy work unless the Accepted
-   spec explicitly decomposes disjoint write scopes.
-6. Use `test-runner` for targeted verification.
-7. Use `reviewer` to compare the diff against the spec. Independent read-only
-   passes may run in parallel.
-8. Have the main agent apply any final doc/spec status updates.
+1. Start `$codex-agent-tracer` to create a `.agent-trace/<workflow-id>/`
+   trace folder immediately, before any reads.
+2. Read only the accepted spec and the Prerequisites above.
+3. Delegate exploration to `explorer`. Do not read source files yourself.
+4. Confirm any spec gap with the user before implementation.
+5. Delegate implementation to `implementer`. Do not edit files yourself.
+   Batch all reviewer findings into a single implementer pass — do not
+   fix-verify-fix-verify ping-pong.
+6. Delegate verification to `test-runner`. Do not run commands yourself.
+   Submit once per implementer pass. If failures, send back to implementer
+   as one batch.
+7. Delegate review to `reviewer`. Collect findings, deduplicate, then send
+   as one batch to implementer.
+8. Update the spec status after the final review pass.
 9. Leave a follow-up handoff for `$hermes-context` or `$hermes-spec` when the
    implementation settles terminology, changes scope, or exposes a spec gap.
 
@@ -37,14 +42,15 @@ reconciliation, and final reporting.
 - Do not let parallel agents edit the same files.
 - Write-capable agents must have disjoint file ownership.
 - Do not expand scope without updating the spec first.
-- Prefer targeted tests and checks over broad commands early in the repo.
-- Report missing tooling as a repo maturity gap, not a silent success.
+- Prefer targeted tests and checks over broad commands early.
+- Delegate, don't DIY: explorer reads, implementer edits, test-runner verifies,
+  reviewer reviews. Main agent only reconciles and reports.
 
 ## Output
 
 Return a handoff artifact using the shared interface in `docs/WORKFLOWS.md`.
 
-Include these dev-loop-specific fields:
+Include:
 
 - spec path
 - files changed

@@ -1,17 +1,25 @@
 # AGENTS.md
 
-Operating instructions for Codex in this repo.
+Operating instructions for Codex in this repo. This file is the minimum
+orientation contract: it tells the main agent what must be true on every run,
+not which docs to read next.
 
-Read first:
+## Startup
 
-1. `README.md`
-2. `docs/PRODUCT.md`
-3. `docs/CONTEXT.md`
-4. Relevant files under `docs/specs/` or `docs/milestones/`
+**Applies to every Codex session, not repeated per skill invocation.**
+
+- Read `README.md` once for project overview and current status.
+- The active SKILL.md declares its own document prerequisites. Do not
+  preemptively read canonical docs that the skill does not require.
+- When a skill requires orientation beyond its own prerequisites, it will
+  name the files explicitly. Otherwise, trust that a one-time README pass
+  plus the SKILL.md prerequisites are sufficient to start work.
+- Do not re-read `docs/PRODUCT.md`, `docs/CONTEXT.md`, `docs/WORKFLOWS.md`,
+  or `docs/AGENT_ROLES.md` unless the active skill names them.
 
 Use detailed reference docs when needed:
 
-- `docs/WORKFLOWS.md` for skill workflows and handoffs.
+- `docs/WORKFLOWS.md` for skill handoff interface contracts and spec status.
 - `docs/AGENT_ROLES.md` for project subagent roles and ownership rules.
 - `docs/DOCS_POLICY.md` for documentation destinations and status rules.
 
@@ -22,7 +30,7 @@ developer workflow around:
 
 - requirements gathering
 - specs and milestone planning
-- model-routed subagents
+- model-routed subagents with strict delegation
 - domain-specific skills
 - implementation loops that trace back to accepted specs
 
@@ -33,6 +41,12 @@ agents must be introduced through specs, not assumed globally.
 
 Specs define truth. Skills define process. Agents execute roles. Model choices
 are capacity decisions.
+
+**The main agent delegates work; it does not perform subagent work itself.**
+During a dev-loop: do not read source files (the explorer exists for that),
+do not edit files (the implementer exists for that), and do not run verification
+commands (the test-runner exists for that). The main agent owns judgment,
+delegation, reconciliation, reporting, and user interaction only.
 
 Any non-trivial work must have a routing trace. This includes:
 
@@ -50,16 +64,25 @@ user explicitly allows it or the change is obviously reversible.
 
 ## Main Skills
 
- When the user invokes a project workflow skill, that invocation explicitly authorizes the
- main agent to use the project subagents named by that skill's workflow.
- 
- If a selected skill says to use a subagent, the main agent must either:
+When the user invokes a project workflow skill, that invocation explicitly
+authorizes the main agent to use the project subagents named by that skill's
+workflow.
 
-  1. invoke that subagent,
-  2. report that the subagent tool is unavailable, or
-  3. explicitly explain why the subagent is not applicable before proceeding.
-  
- Silent manual substitution for a required subagent is a workflow violation.
+**Delegation is mandatory.** When a skill says to use a subagent:
+- `explorer` is for reading repo state — do not read source files in parallel.
+- `implementer` is for editing files — batch all reviewer findings into one
+  implementer pass; do not edit files yourself.
+- `test-runner` is for verification — do not re-run the same commands.
+  Submit work to test-runner once per implementer pass. If the test-runner
+  reports failures, send them back to the implementer as one batch.
+
+If a selected skill says to use a subagent, the main agent must either:
+
+ 1. invoke that subagent,
+ 2. report that the subagent tool is unavailable, or
+ 3. explicitly explain why the subagent is not applicable before proceeding.
+ 
+Silent manual substitution for a required subagent is a workflow violation.
 
 - `$hermes-requirements`: gather requirements and produce Accepted milestones.
 - `$hermes-spec`: turn Accepted milestones into formal specs.
@@ -94,7 +117,7 @@ only when the active workflow calls for it.
 The main agent owns judgment, reconciliation, user interaction, and final
 reporting.
 
-## Repository Rules
+## Repository Rules + Delegation
 
 - Keep changes surgical and tied to the current spec or explicit task.
 - Prefer repo docs over general assumptions.
@@ -104,6 +127,11 @@ reporting.
 - Never hardcode secrets, tokens, or keys.
 - Preserve user-owned worktree changes.
 - Do not revert unrelated edits.
+- Do not read source files when `explorer` is available and delegated.
+- Do not edit files when `implementer` is available and delegated.
+- Do not run verification commands when `test-runner` is available and delegated.
+- Batch reviewer findings: one implementer pass per review cycle, not a
+  fix-verify-fix-verify ping-pong.
 
 ## Commands
 
