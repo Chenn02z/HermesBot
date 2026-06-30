@@ -17,17 +17,14 @@ Use detailed reference docs when needed:
 
 ## Project
 
-This is a specs-driven Hermes Agent workspace for building a durable developer
-workflow around:
+This is a specs-driven finance research agent workspace for building a durable
+developer workflow around:
 
 - requirements gathering
 - specs and milestone planning
 - model-routed subagents
 - domain-specific skills
 - implementation loops that trace back to accepted specs
-
-Hermes refers to Nous Research's Hermes Agent project:
-`https://hermes-agent.nousresearch.com/`.
 
 Future domains such as finance, Telegram, market research, or personal-ops
 agents must be introduced through specs, not assumed globally.
@@ -53,7 +50,7 @@ user explicitly allows it or the change is obviously reversible.
 
 ## Main Skills
 
- When the user invokes a Hermes skill, that invocation explicitly authorizes the
+ When the user invokes a project workflow skill, that invocation explicitly authorizes the
  main agent to use the project subagents named by that skill's workflow.
  
  If a selected skill says to use a subagent, the main agent must either:

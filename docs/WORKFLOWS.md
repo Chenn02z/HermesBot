@@ -1,4 +1,4 @@
-# Hermes Workflows
+# Project Workflows
 
 This document holds the detailed workflow rules that do not need to live in the
 root `AGENTS.md` orientation file.
@@ -13,7 +13,7 @@ instead of relying on conversational memory.
 
 ## Handoff Artifact Interface
 
-Every non-trivial Hermes workflow handoff must include these shared fields:
+Every non-trivial project workflow handoff must include these shared fields:
 
 - producer skill
 - intended consumer skill
@@ -177,8 +177,8 @@ decision is hard to reverse, surprising, and a real trade-off.
 
 ## Agent Routing Log
 
-Any non-trivial workflow using a Hermes skill must include an agent routing log
-in its final handoff.
+Any non-trivial workflow using a project workflow skill must include an agent
+routing log in its final handoff.
 
 A required subagent named by the selected skill is a gate, not a suggestion. If
 the agent is skipped, the final handoff must say whether the workflow remains

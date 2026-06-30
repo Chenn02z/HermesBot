@@ -8,7 +8,7 @@ Verified
 
 Expose the verified deterministic finance workflows through a local FastAPI
 ASGI service boundary before adding live providers, Telegram delivery,
-persistence, Hermes Agent runtime integration, model routing, deployment, or
+persistence, product-agent orchestration, model routing, deployment, or
 external service dependencies.
 
 The service must preserve the public Python contracts and verified behavior from
@@ -53,7 +53,7 @@ persistence, Telegram, or network access.
 - Uvicorn scripts, external server startup commands, deployment runners,
   Docker, AWS, or production runtime configuration.
 - Telegram delivery.
-- Hermes Agent runtime integration.
+- runtime product-agent orchestration.
 - Runtime finance subagent orchestration.
 - Live providers, provider adapters, or fixture file loading inside handlers.
 - Persistence, watchlist storage, scheduling, auth, or multi-user behavior.
@@ -111,7 +111,7 @@ Readiness means only that the app imports and both finance POST route handlers
 are registered. `/ready` must derive readiness from the app route table
 containing both finance POST routes. It must not check secrets, fixture files,
 network access, providers, databases, models, Telegram, deployment state, or
-Hermes Agent runtime state.
+runtime product-agent state.
 
 Both finance POST endpoints accept a JSON object with:
 
@@ -159,7 +159,7 @@ Allowed `workflow` values are:
 - `daily_market_brief`
 - `entry_zone_strategy`
 
-`workflow` is a finance endpoint enum, not a Hermes skill workflow or runtime
+`workflow` is a finance endpoint enum, not a development workflow or runtime
 orchestration term. `as_of` echoes the request value. `report_markdown` is the
 exact markdown string returned by the underlying finance function.
 
@@ -241,7 +241,8 @@ unexpected runtime failures are mapped to structured error responses.
 - Unsupported route or method.
 - Unexpected internal exception.
 - Health or readiness checks accidentally depending on secrets, files, network,
-  providers, databases, models, Telegram, deployment state, or Hermes runtime.
+  providers, databases, models, Telegram, deployment state, or product-agent
+  runtime.
 - Runtime wrapper accidentally mutating fixtures or transforming finance
   markdown.
 
@@ -283,8 +284,8 @@ unexpected runtime failures are mapped to structured error responses.
 - Add in-process ASGI route tests for `/health` and `/ready`.
 - Assert both finance POST routes are registered and `/ready` derives readiness
   from the app route table without inspecting files, environment secrets,
-  network, providers, databases, models, Telegram, deployment state, or Hermes
-  runtime state.
+  network, providers, databases, models, Telegram, deployment state, or
+  product-agent runtime state.
 - Add in-process ASGI route tests for valid daily market brief and entry-zone
   strategy POST requests.
 - Assert successful POST responses include the expected `workflow`, echoed
@@ -316,5 +317,5 @@ Deferred to later specs:
 
 - Whether a CLI should be added.
 - Whether runtime responses should support formats beyond markdown.
-- How this service boundary connects to Hermes Agent runtime integration.
+- How this service boundary connects to runtime product-agent orchestration.
 - How this service boundary connects to Telegram delivery.

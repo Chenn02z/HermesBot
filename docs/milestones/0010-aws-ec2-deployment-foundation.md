@@ -12,7 +12,7 @@ does not authorize implementation.
 
 ## Goal
 
-Deploy the containerized Hermes runtime to AWS EC2 for the personal product
+Deploy the containerized runtime to AWS EC2 for the personal product
 after service, config, health check, and rollback boundaries exist.
 
 ## Scope Boundary

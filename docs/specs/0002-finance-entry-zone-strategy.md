@@ -20,16 +20,16 @@ fundamental analysis are deferred to later specs.
 
 ## Scenario
 
-A developer asks Hermes to compare a caller-supplied watchlist such as
+A developer asks HermesBot to compare a caller-supplied watchlist such as
 `["META", "MSFT", "NVDA"]` as of `2026-06-26T16:30:00-04:00` using static
-fixtures. Hermes returns one markdown strategy report with a deterministic
+fixtures. HermesBot returns one markdown strategy report with a deterministic
 technical setup score, research-candidate label, comparison table, visible
 degradation for missing or stale inputs, and a research-only observation zone
 for each eligible supported ticker.
 
-If a ticker has conflicting technical signals, Hermes shows the conflict rather
+If a ticker has conflicting technical signals, HermesBot shows the conflict rather
 than hiding uncertainty behind the score. If a ticker lacks fresh required
-strategy evidence, Hermes renders the ticker section but does not produce a
+strategy evidence, HermesBot renders the ticker section but does not produce a
 score, rank, label, or observation zone for that ticker.
 
 ## In Scope

@@ -1,9 +1,9 @@
 ---
 name: hermes-dev-loop
-description: Runs the specs-driven implementation loop for Hermes Agent work. Use when an accepted spec should be implemented, verified, reviewed, and summarized with model-routed subagents.
+description: Runs the specs-driven implementation loop for product work. Use when an accepted spec should be implemented, verified, reviewed, and summarized with model-routed subagents.
 ---
 
-# Hermes Dev Loop
+# Dev Loop
 
 Use this skill after a spec is Accepted, or when the user explicitly marks a
 small task as a spec exception. It consumes the handoff artifact from

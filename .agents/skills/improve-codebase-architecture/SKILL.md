@@ -1,11 +1,11 @@
 ---
 name: improve-codebase-architecture
-description: Find Hermes Agent workspace architecture-deepening opportunities that reduce AI-spaghetti risk, present them as a visual HTML report, then route the chosen candidate through grill-with-docs. Use when reviewing workspace code structure, workflow seams, module boundaries, testability, long-term maintainability, or before implementing a spec or milestone that may spread behavior across docs, skills, agents, finance code, and tests.
+description: Find workspace architecture-deepening opportunities that reduce AI-spaghetti risk, present them as a visual HTML report, then route the chosen candidate through grill-with-docs. Use when reviewing workspace code structure, workflow seams, module boundaries, testability, long-term maintainability, or before implementing a spec or milestone that may spread behavior across docs, skills, agents, finance code, and tests.
 ---
 
 # Improve Codebase Architecture
 
-Surface architectural friction in the Hermes Agent workspace and propose
+Surface architectural friction in the workspace and propose
 deepening opportunities: refactors that move scattered behavior behind a small,
 useful interface. The aim is to prevent AI-generated spaghetti by improving
 locality, leverage, and testability before implementation work expands.
@@ -30,7 +30,7 @@ a seam is a real split where dependencies or tests can substitute behavior; an
 adapter translates across a seam; locality keeps related behavior together;
 leverage means one interface improves many call sites or tests.
 
-Use Hermes workspace language from `docs/CONTEXT.md` and the current specs:
+Use workspace language from `docs/CONTEXT.md` and the current specs:
 workspace, developer, main agent, subagent, skill, agent preset, requirements
 packet, handoff artifact, spec, milestone, finance brief, watchlist,
 research-only pullback zone, entry-zone strategy, and finance agent
@@ -47,7 +47,7 @@ existing `docs/techdebt/` tickets if present. Read existing `docs/adr/`
 entries if present.
 
 Then inspect the repo area that matches the architecture review target. Current
-Hermes workspace areas include:
+Workspace areas include:
 
 - workflow docs and handoff contracts under `docs/`
 - reusable workflow skills under `.agents/skills/`
@@ -65,7 +65,7 @@ architecture sketch.
 
 Look for friction:
 
-- One Hermes workflow concept requires bouncing across many files.
+- One workflow concept requires bouncing across many files.
 - A module is shallow: callers know too much about its implementation.
 - A spec or milestone behavior spreads across docs, skills, code, and tests
   with no stable interface.
@@ -77,7 +77,7 @@ Look for friction:
 Apply the deletion test to suspected shallow modules: if deleting the module
 concentrates behavior and simplifies tests, it is probably shallow.
 
-Hermes-specific examples that fit this review:
+Project-specific examples that fit this review:
 
 - Spec status logic leaks across multiple skills instead of one shared workflow
   module or contract.
@@ -96,7 +96,7 @@ Write a self-contained HTML file to the OS temp directory so bulky generated
 reports do not land in the repo. Durable follow-up tickets live in
 `docs/techdebt/` and must be self-contained because temp links may expire.
 Resolve the temp dir from `$TMPDIR`, falling back to `/tmp` or `%TEMP%`, and write to
-`<tmpdir>/hermes-agent-architecture-review-<timestamp>.html`. Open it for the
+`<tmpdir>/architecture-review-<timestamp>.html`. Open it for the
 user if allowed by the current environment and report the absolute path.
 
 Use Tailwind via CDN and Mermaid via CDN. Mix Mermaid with hand-built CSS/SVG.

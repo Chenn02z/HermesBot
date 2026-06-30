@@ -1,9 +1,9 @@
 ---
 name: hermes-context
-description: Keeps Hermes Agent repo context aligned across AGENTS.md, README, durable docs, specs, skills, and agents. Use whenever terminology, workflow boundaries, project direction, or agent/skill setup changes.
+description: Keeps repo context aligned across AGENTS.md, README, durable docs, specs, skills, and agents. Use whenever terminology, workflow boundaries, project direction, or agent/skill setup changes.
 ---
 
-# Hermes Context
+# Context Workflow
 
 Use this skill when project meaning or developer workflow changes, especially
 after requirements or spec decisions settle. It consumes handoff artifacts from

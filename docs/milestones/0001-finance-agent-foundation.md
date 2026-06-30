@@ -6,7 +6,7 @@ Verified
 
 ## Goal
 
-Capture the verified first finance-domain slice of Hermes: a fixture-backed
+Capture the verified first finance-domain slice of HermesBot: a fixture-backed
 market brief followed by a richer, separately scoped entry-zone strategy layer.
 
 This milestone exists to record the completed fixture-backed finance foundation
@@ -132,7 +132,7 @@ Scope boundary:
 
 Scenarios:
 
-- The developer asks Hermes to compare a watchlist and identify stronger
+- The developer asks HermesBot to compare a watchlist and identify stronger
   research candidates from fixture-backed signals.
 - A ticker has missing or stale strategy inputs; the strategy output degrades
   visibly instead of inventing a score.

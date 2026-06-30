@@ -73,7 +73,7 @@ indicators, timestamps, sources, or ticker interpretations to fill gaps.
 - Modifying the `0002` runtime service contract or adding runtime endpoints.
 - Depending on `hermes_runtime` from the finance adapter layer.
 - Telegram delivery.
-- Hermes Agent runtime integration.
+- runtime product-agent orchestration.
 - Persistence, caching, watchlist storage, scheduling, auth, or multi-user
   behavior.
 - Model calls, OpenRouter gateway integration, or model-written synthesis.

@@ -1,6 +1,6 @@
 ---
 name: grill-with-docs
-description: "Pressure-test Hermes Agent workspace plans, specs, milestones, and terminology against README, AGENTS.md, product docs, context docs, and current repo state."
+description: "Pressure-test workspace plans, specs, milestones, and terminology against README, AGENTS.md, product docs, context docs, and current repo state."
 ---
 
 # Grill With Docs
@@ -29,7 +29,7 @@ against the repo's documented boundaries.
 
 ## Workflow
 
-1. Resolve the user's actual goal in Hermes workspace terms.
+1. Resolve the user's actual goal in workspace terms.
 2. Read the repo before asking anything the repo can answer.
 3. Challenge fuzzy, overloaded, or conflicting terms immediately.
 4. Use concrete developer workflows to force boundary decisions.
@@ -49,11 +49,11 @@ against the repo's documented boundaries.
 - `docs/milestones/` for larger deliverable slices.
 - `docs/adr/NNNN-slug.md` for durable architecture decisions.
 
-## Hermes Workspace Terminology
+## Workspace Terminology
 
 Prefer the repo's language over generic alternatives:
 
-- `Hermes` for the Nous Hermes Agent substrate/reference.
+- `HermesBot` for this repository's personal finance research product.
 - `workspace` for this repo and its docs, skills, specs, and agents.
 - `main agent` for the active Codex thread that owns final judgment.
 - `subagent` for delegated role/model workers.

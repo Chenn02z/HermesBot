@@ -1,7 +1,7 @@
 [project]
 name = "hermes-finance"
 version = "0.1.0"
-description = "Fixture-backed finance brief generator for Hermes"
+description = "Fixture-backed finance brief generator for HermesBot"
 requires-python = ">=3.11"
 dependencies = [
   "fastapi>=0.115.0",

@@ -1,2 +1,1 @@
-"""Runtime service boundary for Hermes finance workflows."""
-
+"""Runtime service boundary for HermesBot finance workflows."""

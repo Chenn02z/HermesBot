@@ -21,7 +21,7 @@ integrations, or network access.
 ## Scenario
 
 A developer requests a market brief for `["NVDA", "AAPL", "MSFT"]` as of
-`2026-06-26T16:30:00-04:00` using static fixtures. Hermes produces one dated
+`2026-06-26T16:30:00-04:00` using static fixtures. HermesBot produces one dated
 markdown report with general US market context, one section per unique
 supported normalized ticker, visible sections for unsupported or ambiguous
 inputs, source metadata, freshness labels, and a constrained `Research-Only

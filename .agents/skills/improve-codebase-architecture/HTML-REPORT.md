@@ -12,7 +12,7 @@ visuals such as mass diagrams and cross-sections. Mix the two.
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Hermes Agent workspace architecture review - {{date}}</title>
+    <title>Workspace architecture review - {{date}}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -38,7 +38,7 @@ visuals such as mass diagrams and cross-sections. Mix the two.
 
 ## Header
 
-Use "Hermes Agent workspace architecture review", the date, and a compact
+Use "Workspace architecture review", the date, and a compact
 legend:
 
 - solid box = module
@@ -52,7 +52,7 @@ Do not write a generic introduction. Go straight into the candidates.
 ## Candidate card
 
 The diagrams carry the weight. Prose is sparse, plain, and uses the
-architecture terms from `SKILL.md` plus Hermes workspace terms from
+architecture terms from `SKILL.md` plus workspace terms from
 `docs/CONTEXT.md`.
 
 Each candidate is one `<article>`:
@@ -134,13 +134,13 @@ That's it.
 
 ## Tone
 
-Plain English, concise, and grounded in the Hermes Agent workspace's actual
+Plain English, concise, and grounded in the workspace's actual
 workflow and repo behavior.
 
 **Use exactly:** module, interface, implementation, depth, deep, shallow, seam,
 adapter, leverage, locality.
 
-**Use Hermes terms:** spec, milestone, handoff artifact, skill, subagent,
+**Use workspace terms:** spec, milestone, handoff artifact, skill, subagent,
 finance brief, watchlist, research-only pullback zone, entry-zone strategy.
 
 **Avoid substitutes:** component, service, unit for module; API or signature for

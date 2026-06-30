@@ -3,7 +3,7 @@
 **Status:** implemented
 **Review date:** 2026-06-28
 **Source report:** temp report path, if still available:
-`/private/var/folders/ww/s0hkrfgs7mzcfw5wl8_g1v2m0000gn/T/hermes-agent-architecture-review-20260628-144652.html#shrink-skill-handoff-surface`.
+`/private/var/folders/ww/s0hkrfgs7mzcfw5wl8_g1v2m0000gn/T/architecture-review-20260628-144652.html#shrink-skill-handoff-surface`.
 This ticket includes enough copied context to stand alone.
 **Recommendation:** Worth exploring
 **Area:** skills
@@ -11,9 +11,9 @@ This ticket includes enough copied context to stand alone.
 
 ## Problem
 
-Each Hermes skill repeated much of the handoff interface in local prose, which
-made workflow changes shallow and forced synchronized edits across multiple
-skill files.
+Each project workflow skill repeated much of the handoff interface in local
+prose, which made workflow changes shallow and forced synchronized edits across
+multiple skill files.
 
 ## Current Shape
 
@@ -53,7 +53,7 @@ flowchart TD
 ## Expected Wins
 
 - locality: shared workflow rules live in one place
-- leverage: every Hermes skill inherits the same handoff contract
+- leverage: every project workflow skill inherits the same handoff contract
 - tests: workflow review has a clearer seam
 - interface: skill files focus on only their unique outputs
 
@@ -65,7 +65,7 @@ flowchart TD
 
 - [x] `docs/WORKFLOWS.md` defines the shared handoff artifact fields.
 - [x] `docs/WORKFLOWS.md` defines agent routing log expectations.
-- [x] The four Hermes skill files reference the shared interface.
+- [x] The four project workflow skill files reference the shared interface.
 - [x] Each skill output section lists only skill-specific extra fields.
 
 ## Grilling Notes
@@ -75,4 +75,4 @@ Accepted in the review and completed in this doc-curator pass.
 ## Implementation Notes
 
 Implemented by centralizing the handoff interface in `docs/WORKFLOWS.md` and
-trimming repeated output field lists in the four Hermes skill files.
+trimming repeated output field lists in the four project workflow skill files.

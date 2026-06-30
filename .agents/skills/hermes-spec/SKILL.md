@@ -1,9 +1,9 @@
 ---
 name: hermes-spec
-description: Converts Accepted Hermes milestone contracts into implementation specs under docs/specs. Reject Draft or non-Accepted milestones; do not update milestone contracts.
+description: Converts Accepted milestone contracts into implementation specs under docs/specs. Reject Draft or non-Accepted milestones; do not update milestone contracts.
 ---
 
-# Hermes Spec
+# Spec Workflow
 
 Use this skill when an Accepted milestone needs one or more executable
 implementation specs under `docs/specs/`. It consumes Accepted milestone

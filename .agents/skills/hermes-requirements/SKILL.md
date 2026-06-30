@@ -1,9 +1,9 @@
 ---
 name: hermes-requirements
-description: Produces requirements packets and Accepted milestone contracts for Hermes Agent work. Use when gathering requirements, clarifying product direction, deciding scope, or accepting milestone direction before hermes-spec creates specs; do not use it to write full specs.
+description: Produces requirements packets and Accepted milestone contracts for product work. Use when gathering requirements, clarifying product direction, deciding scope, or accepting milestone direction before hermes-spec creates specs; do not use it to write full specs.
 ---
 
-# Hermes Requirements
+# Requirements Workflow
 
 Use this skill before writing implementation specs when the request is still
 ambiguous or when milestone direction must be accepted before spec work starts.

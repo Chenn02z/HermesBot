@@ -1,24 +1,29 @@
-# Hermes Agent Workspace Context
+# Workspace Context
 
 This document defines project terminology and boundaries. Keep it about meaning
 and workflow context, not implementation details.
 
 ## Canonical Terms
 
-- `Hermes`: Nous Research's Hermes Agent project, used here as the agentic
-  substrate and product reference.
+- `HermesBot`: this repository's personal finance research agent product.
 - `workspace`: this repository and its docs, skills, specs, and agent presets.
 - `developer`: the human using this repo to drive specs-driven agentic work.
 - `single-user product boundary`: the current runtime product assumption: one
   developer/operator and one authorized personal Telegram identity unless a
   later accepted spec explicitly introduces broader user scope.
+- `runtime product agent`: a production/runtime finance research role such as
+  news analyst, price analyst, technical analyst, fundamentals analyst,
+  valuation analyst, risk analyst, bull/bear researcher, chief analyst, or
+  portfolio-manager-style synthesizer. These are distinct from Codex development
+  subagents and require accepted runtime specs before implementation.
 - `OpenRouter gateway`: the planned model access boundary for varied model
   usage in later accepted runtime specs. This is a product-direction decision,
   not permission to add model calls outside accepted spec scope.
 - `main agent`: the active Codex thread that owns judgment, user interaction,
   final decisions, and final reporting.
-- `subagent`: a delegated Codex agent with a narrow role, model, reasoning, and
-  permission profile.
+- `subagent`: a delegated Codex development agent with a narrow role, model,
+  reasoning, and permission profile. In this repo, unqualified `subagent`
+  means a development-time Codex worker, not a runtime product finance analyst.
 - `skill`: a reusable workflow under `.agents/skills/` that tells the main agent
   how to do a class of work.
 - `agent preset`: a concrete subagent role under `.codex/agents/` that defines
@@ -46,6 +51,10 @@ and workflow context, not implementation details.
 - `research-only pullback zone`: a constrained entry-related output that uses a
   deterministic fixture-backed heuristic and must not provide personalized
   advice, position sizing, guarantees, or trade instructions.
+- `suggested research entry price`: a research-only price artifact derived from
+  accepted evidence and deterministic or model-governed logic. It may guide the
+  operator's research, but it must not be framed as personalized advice, a buy
+  order, position sizing, guaranteed outcome, or brokerage action.
 - `entry-zone strategy`: the richer finance layer for technical analysis,
   scoring, ranking, and strategy logic. It is verified through
   `docs/specs/0002-finance-entry-zone-strategy.md`.
@@ -129,6 +138,10 @@ task, subject to system/tool constraints and file ownership rules.
   foundation is verified in `docs/milestones/0001-finance-agent-foundation.md`
   and child specs `0001` and `0002`, not by broad assumptions from the README
   architecture sketch.
+- The product focus is runtime finance research agents, not development-time
+  Codex subagents. Codex agents under `.codex/agents/` are the way the repo is
+  built and reviewed; runtime product agents must be introduced through
+  accepted product specs.
 - Future roadmap slices should be captured as individual milestone files under
   `docs/milestones/`, not maintained as one consolidated roadmap handoff after
   milestone boundaries settle.
@@ -139,10 +152,12 @@ task, subject to system/tool constraints and file ownership rules.
 - The runtime product target is single-user by default. Multi-user auth, public
   bot access, team accounts, billing, role administration, and multi-tenant
   persistence require later accepted specs.
+- The research-only boundary allows suggested research entry prices or entry
+  zones when accepted specs define their evidence, calculation, wording, and
+  verification contracts. It still excludes trade execution, brokerage actions,
+  position sizing, guarantees, and personalized financial advice.
 
 ## Open Questions
 
 - When should Telegram delivery become its own accepted spec?
 - Should inherited skills be retired, renamed, or kept as references?
-- Which Hermes Agent features should be treated as required substrate versus
-  optional integrations?

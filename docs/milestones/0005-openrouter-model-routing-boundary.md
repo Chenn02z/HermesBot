@@ -38,8 +38,8 @@ allowing model output to become the source of factual finance truth.
 
 ## Scenarios
 
-- A later accepted Hermes runtime workflow chooses a configured OpenRouter model
-  for planning and records that routing decision.
+- A later accepted runtime workflow chooses a configured OpenRouter model for
+  planning and records that routing decision.
 - Missing OpenRouter credentials fail startup or model-backed workflow
   execution safely, without affecting deterministic finance tool tests.
 - Model-written synthesis explains supplied evidence and deterministic outputs

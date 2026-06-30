@@ -1,30 +1,36 @@
 # Hermes Bot
 
-> A specs-driven workspace for a personal AI operations product.
+> A specs-driven workspace for a personal finance research agent product.
 
-Hermes Bot is a Hermes Agent development workspace for building a dingle-user 
-sersonal AI operations system. The current verified implementation is a 
-fixture-backed finance research foundation. Telegram delivery, live
-providers, Hermes Agent runtime integration, OpenRouter-backed model synthesis,
-and AWS deployment remain future milestone work until introduced by accepted
-specs.
+Hermes Bot is a specs-driven workspace for building a single-user personal
+finance research system. The current verified implementation is a fixture-backed
+finance research foundation. Telegram delivery, live providers,
+OpenRouter-backed model synthesis, and AWS deployment remain future milestone
+work until introduced by accepted specs.
 
-Rather than becoming one giant prompt, Hermes coordinates specialized agents,
+Rather than becoming one giant prompt, HermesBot coordinates specialized agents,
 deterministic tools, external APIs, and model-backed synthesis behind explicit
 contracts. For model-backed runtime features that arrive in later specs,
 OpenRouter is the planned gateway for varied model usage.
+
+The runtime product direction is inspired by multi-agent trading research
+systems: analyst-style agents gather and debate market evidence, while the
+final output remains research-only. HermesBot may provide suggested research
+entry prices or entry zones, but it must not execute trades, size positions,
+guarantee outcomes, or present personalized financial advice.
 
 ---
 
 ## Vision
 
-Hermes exists to answer a simple question:
+HermesBot exists to answer a simple question:
 
 > *"How can one AI assistant coordinate many specialized experts without becoming one giant prompt?"*
 
-Instead of embedding all logic into a single LLM call, Hermes orchestrates multiple agents, deterministic tools, and external APIs to produce grounded, explainable outputs.
+Instead of embedding all logic into a single LLM call, HermesBot orchestrates multiple agents, deterministic tools, and external APIs to produce grounded, explainable outputs.
 
-The long-term goal is to become a personal AI operating system capable of continuously assisting across multiple domains.
+The long-term goal is to become a personal finance research system capable of
+continuous market monitoring, evidence gathering, and research synthesis.
 
 ---
 
@@ -50,13 +56,13 @@ routing, and runtime finance sub-agents are deferred to later specs.
                             │
                      FastAPI Webhook
                             │
-                   Hermes Orchestrator
+                  Product Orchestrator
                             │
           Intent Planner / Task Scheduler
                             │
  ┌──────────────────────────┴──────────────────────────┐
  │                                                     │
-Finance Agent                                     Future Agents
+Finance Research Agent                           Future Agents
  │                                                     │
  ├─────────────┬──────────────┬───────────────┐        │
  │             │              │               │        │
@@ -70,7 +76,7 @@ Sentiment    Support/Res   Margin Safety    Risks      │
                             │
                     Chief Analyst
                             │
-              Deterministic Finance Report
+       Research Report + Suggested Entry Price/Zone
                             │
            Optional OpenRouter Model Gateway
                             │
@@ -91,8 +97,6 @@ Sentiment    Support/Res   Margin Safety    Risks      │
   live finance provider integration.
 - `docs/milestones/0005-openrouter-model-routing-boundary.md`: Accepted
   OpenRouter model gateway boundary.
-- `docs/milestones/0006-hermes-agent-runtime-integration.md`: Draft Hermes
-  Agent runtime integration.
 - `docs/milestones/0007-telegram-delivery-foundation.md`: Draft Telegram
   delivery foundation.
 - `docs/milestones/0008-persistence-watchlists-and-scheduling.md`: Draft
@@ -122,7 +126,6 @@ Backend
 
 AI
 
-- Hermes
 - OpenRouter for future model-backed runtime features
 
 Infrastructure
@@ -143,7 +146,7 @@ Memory
 
 # Design Philosophy
 
-Hermes separates reasoning from execution.
+HermesBot separates reasoning from execution.
 
 ```
 LLM
@@ -189,7 +192,7 @@ User
 
 ↓
 
-Hermes
+HermesBot
 
 ↓
 
@@ -226,9 +229,12 @@ NVIDIA (NVDA)
 Current Price
 $171.82
 
-Research-Only Pullback Zone
+Suggested Research Entry
 
-Candidate zone from supplied fixture data
+Suggested entry price from supplied fixture data
+$166.50
+
+Candidate entry zone from supplied fixture data
 $165–168
 
 Investment Thesis
@@ -246,19 +252,19 @@ Risks
 
 Limitations
 
-This is a research-only pullback zone, not personalized financial advice or a
-trade instruction.
+This is a research-only suggested entry price and zone, not personalized
+financial advice, position sizing, or a trade instruction.
 ```
 
 ---
 
-# Why Hermes?
+# Why HermesBot?
 
 Most AI assistants answer questions.
 
-Hermes completes workflows.
+HermesBot completes workflows.
 
-Instead of asking a single model to "figure everything out", Hermes coordinates specialised agents, deterministic software, APIs and language models into one coherent system.
+Instead of asking a single model to "figure everything out", HermesBot coordinates specialised agents, deterministic software, APIs and language models into one coherent system.
 
 ---
 

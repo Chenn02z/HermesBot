@@ -3,7 +3,7 @@
 **Status:** implemented
 **Review date:** 2026-06-28
 **Source report:** temp report path, if still available:
-`/private/var/folders/ww/s0hkrfgs7mzcfw5wl8_g1v2m0000gn/T/hermes-agent-architecture-review-20260628-144652.html#centralize-spec-status-rules`.
+`/private/var/folders/ww/s0hkrfgs7mzcfw5wl8_g1v2m0000gn/T/architecture-review-20260628-144652.html#centralize-spec-status-rules`.
 This ticket includes enough copied context to stand alone.
 **Recommendation:** Strong
 **Area:** workflow

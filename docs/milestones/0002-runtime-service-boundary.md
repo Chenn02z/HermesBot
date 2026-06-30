@@ -51,7 +51,7 @@ network access.
 - External server startup commands, uvicorn scripts, deployment runners, Docker,
   AWS, or production runtime configuration.
 - Telegram delivery.
-- Hermes Agent runtime integration.
+- runtime product-agent orchestration.
 - Runtime finance subagent orchestration.
 - Live providers, provider adapters, or fixture file loading inside handlers.
 - Persistence, watchlist storage, scheduling, auth, or multi-user behavior.
@@ -102,7 +102,7 @@ The service exposes:
 
 Readiness means only that the app imports and both finance route handlers are
 registered. It must not check secrets, files, network access, providers,
-databases, models, Telegram, deployment state, or Hermes Agent runtime state.
+databases, models, Telegram, deployment state, or runtime product-agent state.
 
 Both POST endpoints accept this JSON body:
 
@@ -143,7 +143,7 @@ Successful POST responses return `200` with:
 }
 ```
 
-For this milestone, `workflow` is a finance endpoint enum, not a Hermes skill
+For this milestone, `workflow` is a finance endpoint enum, not a development
 workflow or runtime orchestration term. Allowed values are:
 
 - `daily_market_brief`
@@ -208,7 +208,8 @@ responses.
 - Unsupported route or method.
 - Unexpected internal exception.
 - Health or readiness checks accidentally depending on secrets, files, network,
-  providers, databases, models, Telegram, deployment state, or Hermes runtime.
+  providers, databases, models, Telegram, deployment state, or product-agent
+  runtime.
 
 ## Acceptance Criteria
 
@@ -260,7 +261,7 @@ Deferred to later specs:
 
 - Whether a CLI should be added.
 - Whether runtime responses should support formats beyond markdown.
-- How this service boundary connects to Hermes Agent runtime integration.
+- How this service boundary connects to runtime product-agent orchestration.
 - How this service boundary connects to Telegram delivery.
 
 ## Handoff
@@ -270,7 +271,7 @@ Deferred to later specs:
 - Artifact path: `docs/milestones/0002-runtime-service-boundary.md`
 - Status: Verified.
 - Settled decisions: runtime boundary comes before live providers, Telegram,
-  persistence, Hermes Agent runtime integration, model routing, and deployment;
+  persistence, product-agent orchestration, model routing, and deployment;
   the first interface is a local FastAPI-only ASGI service at
   `hermes_runtime.app:app`; CLI is deferred.
 - Unresolved blockers: none for implementation.
@@ -286,7 +287,7 @@ Deferred to later specs:
 - Verification: `docs/specs/0003-runtime-service-boundary.md` is Verified; the
   runtime app and in-process ASGI route tests exist in the current repo state.
 - Remaining open questions: non-blocking follow-up specs for CLI, non-markdown
-  response formats, Hermes Agent runtime integration, and Telegram delivery.
+  response formats, product-agent orchestration, and Telegram delivery.
 - Agent routing log: `spec-planner` used; `spec-griller` used; focused
   `$grill-with-docs` check performed by the main agent against the canonical
   docs and current repo shape.
