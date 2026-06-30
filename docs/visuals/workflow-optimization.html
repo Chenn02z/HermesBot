@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HermesBot Dev-Loop Optimization — AS-IS vs TO-BE</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --orange: #d2991d;
+    --purple: #a371f7;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  h1 { font-size: 1.8em; margin-bottom: 8px; }
+  h2 { font-size: 1.3em; color: var(--accent); margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+  h3 { font-size: 1.05em; margin: 16px 0 8px; color: var(--text); }
+  .subtitle { color: var(--muted); margin-bottom: 24px; font-size: 0.95em; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.as-is { border-top: 3px solid var(--red); }
+  .card.to-be { border-top: 3px solid var(--green); }
+
+  .metric-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .metric-row:last-child { border-bottom: none; }
+  .metric-label { color: var(--muted); }
+  .metric-value { font-weight: 600; }
+  .metric-value.good { color: var(--green); }
+  .metric-value.bad { color: var(--red); }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 0.85em; text-transform: uppercase; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .savings { color: var(--green); font-weight: 600; }
+
+  .mermaid { background: #fff; border-radius: 6px; padding: 16px; margin: 16px 0; overflow-x: auto; }
+
+  .flow-badge {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 4px;
+    font-size: 0.75em; font-weight: 600;
+  }
+  .flow-badge.main { background: var(--red); color: #fff; }
+  .flow-badge.sub  { background: var(--green); color: #000; }
+  .flow-badge.dup  { background: var(--orange); color: #000; }
+  .flow-badge.skip { background: var(--border); color: var(--muted); }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num { font-size: 2em; font-weight: 700; line-height: 1.2; }
+  .stat-label { color: var(--muted); font-size: 0.85em; }
+
+  .warning { background: rgba(248, 81, 73, 0.1); border: 1px solid rgba(248, 81, 73, 0.3); border-radius: 6px; padding: 12px 16px; margin: 12px 0; }
+  .note { background: rgba(88, 166, 255, 0.08); border: 1px solid rgba(88, 166, 255, 0.2); border-radius: 6px; padding: 12px 16px; margin: 12px 0; }
+
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<h1>Dev-Loop Token Optimization</h1>
+<p class="subtitle">AS-IS (hermes-dev-loop-0003 trace) vs TO-BE (optimized workflow). Analysis from <code>.agent-trace/</code> data.</p>
+
+<div class="stats-grid">
+  <div class="stat-box">
+    <div class="stat-num" style="color:var(--red)">41</div>
+    <div class="stat-label">AS-IS trace events</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color:var(--green)">≤20</div>
+    <div class="stat-label">TO-BE target events</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color:var(--red)">~40KB</div>
+    <div class="stat-label">AS-IS startup reads</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color:var(--green)">~5KB</div>
+    <div class="stat-label">TO-BE startup reads</div>
+  </div>
+</div>
+
+<h2>AS-IS vs TO-BE Flow Comparison</h2>
+
+<div class="grid">
+  <div class="card as-is">
+    <h3>⚠️ AS-IS Dev-Loop (41 events)</h3>
+    <p style="color:var(--muted);margin-bottom:12px;">Main agent (gpt-5.5) does 36 of 41 events. 13 verification commands, 6 file edits, reads source in parallel with explorer.</p>
+
+    <div class="mermaid">
+graph TD
+  START["▶ Start skill"] --> DOCS["📚 Read 7 docs<br/>~40KB token burn"]
+  DOCS --> TRACE["🔍 Start tracer"]
+  TRACE --> EXPLORE["🤖 Delegate explorer"]
+  EXPLORE --> MAIN_READ["👤 MAIN reads source<br/>in parallel ⚠️"]
+  MAIN_READ --> IMPL["🤖 Delegate implementer"]
+  IMPL --> MAIN_FIX1["👤 MAIN edits tests<br/>⚠️ DIY"]
+  MAIN_FIX1 --> MAIN_VERIFY1["👤 MAIN runs pytest<br/>⚠️ DIY"]
+  MAIN_VERIFY1 --> MAIN_VERIFY2["👤 MAIN runs ruff<br/>⚠️ DIY"]
+  MAIN_VERIFY2 --> DELEG_TEST["🤖 Delegate test-runner"]
+  DELEG_TEST --> DUP_TEST["⚠️ test-runner re-runs<br/>same commands"]
+  DUP_TEST --> REVIEW["🤖 Delegate reviewer"]
+  REVIEW --> FIND1["Reviewer: 2 issues"]
+  FIND1 --> MAIN_FIX2["👤 MAIN fixes issue 1"]
+  MAIN_FIX2 --> MAIN_VERIFY3["👤 MAIN runs pytest"]
+  MAIN_VERIFY3 --> MAIN_VERIFY4["👤 MAIN runs ruff"]
+  MAIN_VERIFY4 --> FIND2["Reviewer: 1 more issue"]
+  FIND2 --> MAIN_FIX3["👤 MAIN fixes issue 2"]
+  MAIN_FIX3 --> MAIN_VERIFY5["👤 MAIN runs pytest"]
+  MAIN_VERIFY5 --> MAIN_VERIFY6["👤 MAIN runs ruff<br/>fails import order"]
+  MAIN_VERIFY6 --> MAIN_FIX4["👤 MAIN fixes imports"]
+  MAIN_FIX4 --> MAIN_VERIFY7["👤 MAIN runs ruff again"]
+  MAIN_VERIFY7 --> DONE["✅ Handoff<br/>(50% duplicated effort)"]
+</div>
+
+    <div style="margin-top:12px;">
+      <span class="flow-badge main">main agent</span>
+      <span class="flow-badge sub">subagent</span>
+      <span class="flow-badge dup">duplicated</span>
+    </div>
+    <div class="warning" style="margin-top:12px;">
+      <strong>Key waste:</strong> 88% of events from main agent. 13 verification rounds. Fix-verify ping-pong. Source reads double explorer effort.
+    </div>
+  </div>
+
+  <div class="card to-be">
+    <h3>✅ TO-BE Dev-Loop (≤20 events)</h3>
+    <p style="color:var(--muted);margin-bottom:12px;">Main agent (gpt-5.4) does ≤8 events. Zero source reads, zero file edits, zero verification commands.</p>
+
+    <div class="mermaid">
+graph TD
+  START["▶ Start skill"] --> PRE["📚 Read spec + SKILL.md<br/>~5KB total"]
+  PRE --> TRACE["🔍 Start tracer"]
+  TRACE --> EXPLORE["🤖 Delegate explorer<br/>reads all source"]
+  EXPLORE --> CONFIRM["👤 Confirm no spec gap"]
+  CONFIRM --> IMPL["🤖 Delegate implementer<br/>single write pass"]
+  IMPL --> TEST["🤖 Delegate test-runner<br/>single verify pass"]
+  TEST --> TEST_OK{"pass?"}
+  TEST_OK -->|yes| REVIEW["🤖 Delegate reviewer"]
+  TEST_OK -->|no| BATCH["📦 Batch failures<br/>→ one impl patch"]
+  BATCH --> IMPL
+  REVIEW --> FINDINGS["Reviewer findings"]
+  FINDINGS --> DEDUP["👤 Deduplicate, batch"]
+  DEDUP --> IMPL_SINGLE["🤖 Single implementer fix"]
+  IMPL_SINGLE --> TEST_FINAL["🤖 Single test-runner verify"]
+  TEST_FINAL --> DONE["✅ Handoff"]
+</div>
+
+    <div style="margin-top:12px;">
+      <span class="flow-badge sub">subagent</span>
+      <span class="flow-badge main">main agent</span>
+    </div>
+    <div class="note" style="margin-top:12px;">
+      <strong>Fix:</strong> gpt-5.4 main, gpt-5.5 only on spec-planner. Delegation enforced, no DIY. Batched review-fix loop.
+    </div>
+  </div>
+</div>
+
+<h2>Document Size Reductions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th class="num">AS-IS</th>
+      <th class="num">TO-BE</th>
+      <th class="num">Savings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr> <td><code>AGENTS.md</code></td>       <td class="num">4.0 KB</td> <td class="num">5.9 KB</td> <td class="savings num">— (restructured)</td> </tr>
+    <tr> <td><code>docs/PRODUCT.md</code></td> <td class="num">5.7 KB</td> <td class="num">3.3 KB</td> <td class="savings num">−42%</td> </tr>
+    <tr> <td><code>docs/CONTEXT.md</code></td> <td class="num">9.9 KB</td> <td class="num">4.6 KB</td> <td class="savings num">−53%</td> </tr>
+    <tr> <td><code>docs/WORKFLOWS.md</code></td><td class="num">7.2 KB</td> <td class="num">2.8 KB</td> <td class="savings num">−61%</td> </tr>
+    <tr style="border-top:2px solid var(--border);">
+      <td><strong>Canonical docs subtotal</strong></td>
+      <td class="num"><strong>26.8 KB</strong></td>
+      <td class="num"><strong>16.6 KB</strong></td>
+      <td class="savings num"><strong>−38%</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Skill</th>
+      <th class="num">AS-IS</th>
+      <th class="num">TO-BE</th>
+      <th class="num">Savings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr> <td><code>codex-agent-tracer</code></td>    <td class="num">3.7 KB</td> <td class="num">1.4 KB</td> <td class="savings num">−62%</td> </tr>
+    <tr> <td><code>hermes-requirements</code></td>   <td class="num">3.7 KB</td> <td class="num">1.9 KB</td> <td class="savings num">−49%</td> </tr>
+    <tr> <td><code>hermes-spec</code></td>           <td class="num">3.8 KB</td> <td class="num">1.7 KB</td> <td class="savings num">−54%</td> </tr>
+    <tr> <td><code>hermes-context</code></td>        <td class="num">2.5 KB</td> <td class="num">1.3 KB</td> <td class="savings num">−47%</td> </tr>
+    <tr> <td><code>hermes-dev-loop</code></td>       <td class="num">2.3 KB</td> <td class="num">2.3 KB</td> <td class="savings num">— (restructured)</td> </tr>
+    <tr style="border-top:2px solid var(--border);">
+      <td><strong>Skills subtotal</strong></td>
+      <td class="num"><strong>15.9 KB</strong></td>
+      <td class="num"><strong>8.6 KB</strong></td>
+      <td class="savings num"><strong>−46%</strong></td>
+    </tr>
+    <tr style="border-top:2px solid var(--border);">
+      <td><strong>TOTAL (docs + skills)</strong></td>
+      <td class="num"><strong>42.7 KB</strong></td>
+      <td class="num"><strong>25.2 KB</strong></td>
+      <td class="savings num"><strong>−41%</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Per-Invocation Token Budget</h2>
+
+<table>
+  <thead>
+    <tr><th>Metric</th><th class="num">AS-IS</th><th class="num">TO-BE</th></tr>
+  </thead>
+  <tbody>
+    <tr> <td>Docs read before first delegation</td> <td class="num bad">~40 KB</td> <td class="num good">~5 KB</td> </tr>
+    <tr> <td>Main agent model</td> <td class="num bad">gpt-5.5</td> <td class="num good">gpt-5.4</td> </tr>
+    <tr> <td>Verification commands run by main</td> <td class="num bad">13</td> <td class="num good">0</td> </tr>
+    <tr> <td>File edits by main</td> <td class="num bad">6</td> <td class="num good">0</td> </tr>
+    <tr> <td>Source reads by main</td> <td class="num bad">in parallel w/ explorer</td> <td class="num good">0 (explorer only)</td> </tr>
+    <tr> <td>Review-fix cycles</td> <td class="num bad">ping-pong (5+ rounds)</td> <td class="num good">1 batched pass</td> </tr>
+    <tr style="border-top:2px solid var(--border);">
+      <td><strong>Est. main-agent token cost per run</strong></td>
+      <td class="num bad">~15-20K tokens</td>
+      <td class="num good">~4-6K tokens</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Agent Model Assignments</h2>
+
+<table>
+  <thead>
+    <tr><th>Agent</th><th>AS-IS</th><th>TO-BE</th><th>Rationale</th></tr>
+  </thead>
+  <tbody>
+    <tr> <td>Main agent</td> <td class="bad">gpt-5.5</td> <td class="good">gpt-5.4</td> <td>Orchestrates delegation, reads summaries. No heavy reasoning.</td> </tr>
+    <tr> <td><code>spec-planner</code></td> <td>gpt-5.5</td> <td>gpt-5.5</td> <td>Only role where high reasoning justifies cost.</td> </tr>
+    <tr> <td><code>spec-griller</code></td> <td>gpt-5.4</td> <td>gpt-5.4</td> <td>—</td> </tr>
+    <tr> <td><code>reviewer</code></td> <td>gpt-5.4</td> <td>gpt-5.4</td> <td>—</td> </tr>
+    <tr> <td><code>implementer</code></td> <td>gpt-5.4</td> <td>gpt-5.4</td> <td>—</td> </tr>
+    <tr> <td><code>explorer</code></td> <td>gpt-5.4-mini</td> <td>gpt-5.4-mini</td> <td>—</td> </tr>
+    <tr> <td><code>test-runner</code></td> <td>gpt-5.4-mini</td> <td>gpt-5.4-mini</td> <td>—</td> </tr>
+    <tr> <td><code>doc-curator</code></td> <td>gpt-5.4</td> <td>gpt-5.4</td> <td>—</td> </tr>
+  </tbody>
+</table>
+
+<h2>Root Causes &amp; Fixes</h2>
+
+<div class="grid">
+  <div class="card as-is">
+    <h3>🔴 Root Cause</h3>
+    <p style="margin-bottom:8px;"><strong>1. Massive startup reads</strong><br/>AGENTS.md required reading 4 docs (~40KB) before any work. Every invocation re-reads them.</p>
+    <p style="margin-bottom:8px;"><strong>2. Main agent = bottleneck + highest cost model</strong><br/>Main agent (gpt-5.5) did 88% of events: reading source, editing files, running tests — all at premium rates.</p>
+    <p style="margin-bottom:8px;"><strong>3. No batching policy</strong><br/>Reviewer findings triggered one-at-a-time fix-verify cycles. 10 verification rounds for 3 issues.</p>
+    <p style="margin-bottom:8px;"><strong>4. Double verification</strong><br/>Main agent ran full pytest/ruff, then test-runner ran them again. Identical results.</p>
+    <p><strong>5. SKILL.md verbosity</strong><br/>Skills restated workflow rules already in WORKFLOWS.md. tracer had full JSON schema.</p>
+  </div>
+  <div class="card to-be">
+    <h3>🟢 Fix</h3>
+    <p style="margin-bottom:8px;"><strong>1. Tiered startup</strong><br/>AGENTS.md says "read README once; SKILL.md declares prerequisites." Per-invocation reads: spec + SKILL.md + handoff interface (~5KB).</p>
+    <p style="margin-bottom:8px;"><strong>2. gpt-5.4 main + strict delegation</strong><br/>Main agent downgraded to gpt-5.4. Never reads source, never edits, never verifies. Only delegates, reconciles, reports.</p>
+    <p style="margin-bottom:8px;"><strong>3. Batched implementer passes</strong><br/>Reviewer findings are collected, deduplicated, sent as one implementer batch. One fix → one verify → done.</p>
+    <p style="margin-bottom:8px;"><strong>4. Single verification gate</strong><br/>test-runner is the sole verification path. Main agent reports results, never re-runs.</p>
+    <p><strong>5. SKILL.md pruning</strong><br/>Removed restated workflow rules. tracer stripped of JSON schema. Total skills: 15.9KB → 8.6KB.</p>
+  </div>
+</div>
+
+<h2>Delegation Guardrails (enforced in AGENTS.md + hermes-dev-loop SKILL.md)</h2>
+
+<div class="note">
+  <strong>During a dev-loop:</strong><br>
+  ❌ <strong>Never</strong> read source files — <code>explorer</code> exists for that.<br>
+  ❌ <strong>Never</strong> edit files — <code>implementer</code> exists for that.<br>
+  ❌ <strong>Never</strong> run verification commands — <code>test-runner</code> exists for that.<br>
+  ✅ <strong>Only</strong> delegate, reconcile, report, and interact with the user.<br>
+  ✅ <strong>Batch</strong> all reviewer findings into one implementer pass — no fix-verify ping-pong.
+</div>
+
+<p style="margin-top:32px; color:var(--muted); font-size:0.85em;">
+  Generated from <code>.agent-trace/hermes-dev-loop-0003-20260629T071208Z/</code> trace data.
+  See <code>docs/visuals/workflow-optimization.html</code>.
+</p>
+
+</body>
+</html>

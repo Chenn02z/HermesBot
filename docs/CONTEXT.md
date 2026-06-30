@@ -14,7 +14,9 @@ Canonical terminology and workflow boundaries. Keep implementation details out.
   risk analyst, bull/bear researcher, chief analyst, portfolio-manager-style
   synthesizer). Distinct from Codex development subagents.
 - `OpenRouter gateway`: planned model access boundary for varied model usage
-  in future accepted runtime specs. Not permission for unspec'd model calls.
+  in future accepted runtime specs. LLM role in runtime is news synthesis and
+  confidence calibration; deterministic code owns prices, indicators, scores,
+  and raw data.
 - `main agent`: the Codex thread owning judgment, delegation, reconciliation,
   user interaction, and final reporting.
 - `subagent`: a delegated Codex development agent with narrow role/model/
@@ -34,13 +36,28 @@ Canonical terminology and workflow boundaries. Keep implementation details out.
 - `milestone`: larger deliverable slice under `docs/milestones/`.
 - `finance brief`: report from supplied evidence for a caller-provided
   watchlist and as-of datetime. Verified via spec 0001.
-- `watchlist`: caller-supplied ticker symbol list. Persistent storage is later spec.
+- `watchlist`: user-managed ticker symbol list (5–10 tickers, managed via
+  Telegram `/watch` commands). Persistent storage is milestone 0008.
 - `research-only pullback zone`: constrained entry-related output using
   fixture-backed heuristics. Not advice, not trading instructions.
 - `suggested research entry price`: research-only artifact from accepted
   evidence and logic. Not advice, not a buy order, not a guarantee.
 - `entry-zone strategy`: technical analysis, scoring, ranking layer. Verified
   via spec 0002.
+- `morning brief`: a single aggregated Telegram message covering macro
+  conditions, overnight moves, and a one-line status per watchlist ticker.
+  Delivered once per day on US market clock.
+- `event-driven alert`: a per-ticker push notification via Telegram triggered
+  by a price threshold crossing or a "good buy" composite scoring threshold.
+  Not bundled with scheduled deliveries.
+- `good buy`: a composite scoring signal (technical + fundamental + news)
+  with transparent sub-scores. Not a trade instruction.
+- `transparent scoring`: multi-factor scoring where sub-scores and weighting
+  are visible to the user, not a black-box verdict.
+- `push delivery`: Telegram-originated messages sent by HermesBot without a
+  user command (morning brief, event-driven alerts).
+- `US market clock`: scheduling follows US market hours and calendar; no
+  waking-hours filter.
 - `finance agent foundation`: first finance milestone (milestone 0001).
 - `requirement gathering`: vague intent → requirements packet or Accepted
   milestone.
@@ -77,8 +94,19 @@ Canonical terminology and workflow boundaries. Keep implementation details out.
   child specs 0001/0002.
 - Runtime product agents require accepted runtime specs.
 - Model calls stay out of scope for fixture-backed finance specs.
+- Trade tracking, portfolio management, and trade execution are out of scope.
+
+## Idle Triage
+
+When no explicit developer task is active and the workspace has Accepted
+milestones without child specs, or Draft milestones that are unblocked, the
+main agent should ask: *"No active task — which milestone or spec should we
+advance next?"* and surface the next-action candidates with their status and
+blockers.
+
+Accepted milestones with no spec are the highest-priority idle candidates.
+Draft milestones with resolved dependencies follow.
 
 ## Open Questions
 
-- When does Telegram delivery become its own accepted spec?
-- Should inherited skills be retired, renamed, or kept as references?
+- What retention policy is appropriate for a personal audit trail?

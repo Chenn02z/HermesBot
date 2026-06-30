@@ -33,9 +33,11 @@ are one-time orientation, not per-invocation reads.
    as one batch.
 7. Delegate review to `reviewer`. Collect findings, deduplicate, then send
    as one batch to implementer.
-8. Update the spec status after the final review pass.
-9. Leave a follow-up handoff for `$hermes-context` or `$hermes-spec` when the
-   implementation settles terminology, changes scope, or exposes a spec gap.
+8. If reviewer findings trigger an implementer pass, re-verify with
+   `test-runner` before marking the spec Verified. Do not skip this gate.
+9. Update the spec status after the final review and verification pass.
+10. Leave a follow-up handoff for `$hermes-context` or `$hermes-spec` when the
+    implementation settles terminology, changes scope, or exposes a spec gap.
 
 ## Guardrails
 
